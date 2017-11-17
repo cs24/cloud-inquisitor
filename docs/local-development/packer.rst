@@ -9,7 +9,9 @@ Nginx should already be configured to serve the front-end and forward backend re
 (``cat /etc/nginx/sites-enabled/cinq.conf``)
 
 You can run ``python3 manage.py`` to see a list of project tasks (e.g., runserver, db reload, auth config)
-1. Start the CloudInquisitor *cinq* ``runserver`` target for development mode (auto-load python changes.) ``run_api_server`` is production target.::
+
+1. Start the CloudInquisitor *cinq* ``runserver`` target for development mode (auto-load python changes.) ``run_api_server`` is production target.
+::
 
     python3 manage.py runserver
 
@@ -41,7 +43,7 @@ Local development configuration defaults to builtin authentication. Further cust
 Testing the build
 =================
 
-Once you have a successful AMI built you should launch a new EC2 Instance based off the AMI to ensure that everything was installed correctly. Simply go to the EC2 console and Launch Instance,
+Once you have a successful AMI built you should launch a new EC2 Instance based off the AMI to ensure that everything was installed correctly.
 
 * Launch **EC2** from with with your AWS IAM Console & then select the AMI you have just created.
 
