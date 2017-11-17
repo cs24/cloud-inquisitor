@@ -6,7 +6,7 @@ Quick Start Guide for CloudInquisitor
 
 This tutorial will walk you through installing and configuring ``CloudInquisitor``. The tool currently runs on *Amazon Web Services* (AWS) but it has been designed to be platform-independent.
 
-This tutorial assumes you are familiar with AWS & that you have an `AWS`_ account. You'll need retrieve your ``Access Key ID`` and ``Secret Access Key`` from the web-based console.
+This tutorial assumes you are familiar with AWS & that you have an `AWS`_ account. You'll need to retrieve your ``Access Key ID`` and ``Secret Access Key`` from the web-based console.
 
 .. _`AWS`: https://aws.amazon.com/
 
@@ -90,7 +90,7 @@ This is the main build definition for Packer which is where we define what and h
 Building an Image
 -----------------
 
-To build a new version of AWS Audits (either AMI or OVA) all you need to do is run the following command, if you have all the variables setup in the file you are passing in.::
+Once you have all the variables set up in the file you're passing in, you just need to run the following command to build a new version of AWS Audits (either AMI or OVA).::
 
     bash packer build -only <builder> -var-file variables/production-variables.json build.json
 
@@ -110,7 +110,7 @@ You can override configuration variables from the command line. The order of ``-
 Variables
 ---------
 
-This sections goes over all the available settings to tweak as well as their default values.
+This section goes over all the available settings to tweak as well as their default values.
 **N.B.** :: These values can and should all be modified in your production _variables_ file, you should not need to edit any values in ``build.json``
 
 ^^^^^^^^^^^^^^^
@@ -170,4 +170,4 @@ Backend Settings
 ===
 FYI
 ===
-The vast majority of these settings should be left at their default values. Some items have been marked with as **IMPORTANT**, meaning that the default values should **never** be used for anything other than local development work at best but ideally never be used at all. See `here </packer/variables/variables.json.sample>`_ for an example JSON variables file.
+The vast majority of these settings should be left at their default values. Some items have been marked as **IMPORTANT**, meaning that the default values should **never** be used for anything other than local development work at best but ideally should never be used at all. See `here </packer/variables/variables.json.sample>`_ for an example JSON variables file.
