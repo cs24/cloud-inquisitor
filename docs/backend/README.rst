@@ -12,8 +12,7 @@ the original codebase.
 API Server
 ==========
 
-The API server provides a RESTful interface for the `frontend <https://www.github.com/riotgames/inquisitor/frontend>`_.
-web client.
+The API server provides a RESTful interface for the `frontend <https://www.github.com/riotgames/inquisitor/frontend>`_ web client.
 
 ==============
 Authentication
@@ -70,13 +69,9 @@ Configuration Options
 Domain Hijacking
 ----------------
 
-The domain hijacking auditor will attempt to identify misconfigured DNS entries that would potentially
-result in third parties being able to take over legitimate Riot owned DNS names and serve malicious
-content to players from a real location.
+The domain hijacking auditor will attempt to identify misconfigured DNS entries that would potentially result in third parties being able to take over legitimate DNS names and serve malicious content from a real location.
 
-This auditor will fetch information from AWS Route53, CloudFlare and our internal F5 based DNS servers,
-and validate the records found against our known owned S3 buckets, Elastic BeanStalks and CloudFront CDN
-distributions.
+This auditor will fetch information from AWS Route53, CloudFlare, and our internal F5 based DNS servers and validate the records found against our known owned S3 buckets, Elastic BeanStalks, and CloudFront CDN distributions.
 
 ^^^^^^^^^^^^^^^^^^^^^
 Configuration Options
