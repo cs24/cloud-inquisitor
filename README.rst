@@ -11,8 +11,8 @@ CloudInquisitor improves the security posture of an AWS footprint through:
 
 * monitoring AWS objects for ownership attribution, notifying account owners of unowned objects, and subsequently removing unowned AWS objects if ownership is not resolved.
 * detecting `domain hijacking <https://labs.detectify.com/2014/10/21/hostile-subdomain-takeover-using-herokugithubdesk-more/>`_.
-* verification of security services such as Cloudtrail and VPC Flowlogs.
-* management of IAM policies across multiple accounts.
+* verifying security services such as Cloudtrail and VPC Flowlogs.
+* managing IAM policies across multiple accounts.
 
 ============
 Architecture
@@ -41,7 +41,7 @@ Any questions or comments regarding this project can be made via the project's `
 Resources
 =========
 
-This project has a **docs** directory that contains many resources that will help you both implement CloudInquisitor and contribute to the project.
+This project has a **docs** directory that contains many resources that will help you implement CloudInquisitor and contribute to the project.
 
 * `Quickstart <docs/quickstart.rst>`_
 * `Upgrading <docs/upgrade.rst>`_
