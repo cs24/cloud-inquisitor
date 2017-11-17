@@ -2,13 +2,13 @@
 Contributing
 ############
 
-We would love contributions to Cloud Inqusitor - this document aims to help you get started quickly.
+We would love contributions to Cloud Inqusitor - this document will help you get started quickly.
 
 ====
 Docs
 ====
 
-Within this **docs** directory, there's documentation on:
+Within this **docs** directory, you'll find documentation on:
 
 * `Building with Packer <local-development/packer.rst>`_
 * `Building with Docker <local-development/docker.rst>`_
