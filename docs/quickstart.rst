@@ -4,18 +4,11 @@
 Quick Start Guide for CloudInquisitor
 *************************************
 
-``CloudInquisitor`` currently runs on *Amazon Web Services* (AWS) but 
-it has been designed to be platform-independent.
+This tutorial will walk you through installing and configuring ``CloudInquisitor``. The tool currently runs on *Amazon Web Services* (AWS) but it has been designed to be platform-independent.
 
-This tutorial will walk you through installing and configuring 
-``CloudInquisitor``. 
-
-This tutorial assumes you are familiar with *Amazon Web Services* (AWS) & that you 
-have an `AWS`_ account. You'll need retrieve your
-``Access Key ID`` and ``Secret Access Key`` from the web-based console.
+This tutorial assumes you are familiar with AWS & that you have an `AWS`_ account. You'll need retrieve your ``Access Key ID`` and ``Secret Access Key`` from the web-based console.
 
 .. _`AWS`: https://aws.amazon.com/
-
 
 ==========================
 Installing CloudInquisitor
@@ -38,7 +31,7 @@ Build Requirements
 Building an Image
 ------------------
 
-All the files required for building images can be found in the `packer </packer>`_ folder. There are three folders (`files </packer/files>`_, `scripts </packer/scripts>`_ and `variables </packer/variables`) and the main packer build script (`build.json </packer/build.json>`_).
+All the files required for building images can be found in the `packer </packer>`_ folder. There are three folders (`files </packer/files>`_, `scripts </packer/scripts>`_, and `variables </packer/variables>`_) and the main packer build script (`build.json </packer/build.json>`_).
 
 ------------------
 Files Directory
@@ -81,7 +74,8 @@ Scripts Directory
 Variables Directory
 -------------------
 
-This folder contains an example of the variables JSON file required to pass in variables for the installer script. Variables in Packer can either be loaded from a file like the `variables.json.sample </packer/variables/variables.json.sample>_` or they can be passed in through the command line when running packer or a mix between file and command line arguments. Any arguments passed in through the command line will override both the variables file passed in as well as default values in the main packer build script.::
+This folder contains an example of the JSON file required to pass in variables for the installer script. Variables in Packer can either be loaded from a file like the `variables.json.sample </packer/variables/variables.json.sample>`_ or they can be passed in through the command line when running packer or a mix between file and command line arguments. Any arguments passed in through the command line will override both the variables file passed in as well as default values in the main packer build script.
+::
 
     variables/
     └── variables.json.sample
@@ -100,7 +94,7 @@ To build a new version of AWS Audits (either AMI or OVA) all you need to do is r
 
     bash packer build -only <builder> -var-file variables/production-variables.json build.json
 
-See `build.json </packer/build.json>_` for build target names such as *ami*, *local*, or  *ami-with-tests*
+See `build.json </packer/build.json>`_ for build target names such as *ami*, *local*, or  *ami-with-tests*
 
 **Please note** that If you do not supply the `-only` argument, all builders will be used. 
 
@@ -108,8 +102,7 @@ See `build.json </packer/build.json>_` for build target names such as *ami*, *lo
 Overriding Variables
 --------------------
 
-You can override configuration variables from the command line. The order of ``-var`` parameters is important. The last specified data source take priority.
-For example if you want to override the database password while building an Amazon AMI you would run the following command: ::
+You can override configuration variables from the command line. The order of ``-var`` parameters is important: the last takes priority. For example, if you want to override the database password while building an Amazon AMI you would run the following command: ::
 
     bash packer build -only ami -var-file variables/production.json -var 'db_password=verysecretpassword' build.json
 
@@ -177,4 +170,4 @@ Backend Settings
 ===
 FYI
 ===
-The vast majority of these settings should be left at their default values. Some items have been marked with as **IMPORTANT**, meaning that the default values should **never** be used for anything other than local development work at best but ideally never be used at all. See `here </packer/variables/variables.json.sample>_` for an example JSON variables file.
+The vast majority of these settings should be left at their default values. Some items have been marked with as **IMPORTANT**, meaning that the default values should **never** be used for anything other than local development work at best but ideally never be used at all. See `here </packer/variables/variables.json.sample>`_ for an example JSON variables file.
