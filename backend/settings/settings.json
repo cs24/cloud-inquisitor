@@ -1,0 +1,30 @@
+{
+    "strict": true,
+    "debug": true,
+    "sp": {
+        "entityId": "aws-audits.dev.riotgames.com",
+        "assertionConsumerService": {
+            "url": "http://localhost/saml/login/consumer",
+            "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+        },
+        "singleLogoutService": {
+            "url": "http://localhost/saml/logout/consumer",
+            "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+        },
+        "NameIDFormat": "urn:oasis:names:tc:SAML:2.0:nameid-format:unspecified",
+        "x509cert": "",
+        "privateKey": ""
+    },
+    "idp": {
+        "entityId": "https://app.onelogin.com/saml/metadata/495992",
+        "singleSignOnService": {
+            "url": "https://riotgames.onelogin.com/trust/saml2/http-post/sso/495992",
+            "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+        },
+        "singleLogoutService": {
+            "url": "https://riotgames.onelogin.com/trust/saml2/http-redirect/slo/495992",
+            "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+        },
+        "x509cert": "MIIEHjCCAwagAwIBAgIBATANBgkqhkiG9w0BAQUFADBnMQswCQYDVQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTEVMBMGA1UEBwwMU2FudGEgTW9uaWNhMREwDwYDVQQKDAhPbmVMb2dpbjEZMBcGA1UEAwwQYXBwLm9uZWxvZ2luLmNvbTAeFw0xMzA2MTYyMjUyNDBaFw0xODA2MTYyMjUyNDBaMGcxCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMRUwEwYDVQQHDAxTYW50YSBNb25pY2ExETAPBgNVBAoMCE9uZUxvZ2luMRkwFwYDVQQDDBBhcHAub25lbG9naW4uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAponXAznYMmAkDhrd4PtRHWkORC3HWFOFeJeRx44q3A7JWpklrXOSex8ar2BFcbjMFO/2gC3vbBhxNG0/kzxEibCJToeDPDlg+mt+IofPf/bZQ2mo1N1E8pl/VPDuhIhpYCXQg5b7RnjxU1Gl+g9CLFIH2XgbrQvPlOCrCffzQu6HBNMqhNvqFSnDCmF4D16p0/vLjCoB9xiXvNBySOeHHQUAYEWn6euwUwdlin0UCrUSnT1N81G3elTspJN/Y0GzmW+t+nY7R77fogOoC0X3j8Ws9CmlDmmPkCdN8ruJGaXMsd6YWRtZWfK+7AyO1SAMoJ/S376vXvYbHBHXPbCi9QIDAQABo4HUMIHRMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFKbNhyF3sygeJcKn2Ya0kC5CnhLFMIGRBgNVHSMEgYkwgYaAFKbNhyF3sygeJcKn2Ya0kC5CnhLFoWukaTBnMQswCQYDVQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTEVMBMGA1UEBwwMU2FudGEgTW9uaWNhMREwDwYDVQQKDAhPbmVMb2dpbjEZMBcGA1UEAwwQYXBwLm9uZWxvZ2luLmNvbYIBATAOBgNVHQ8BAf8EBAMCBPAwDQYJKoZIhvcNAQEFBQADggEBAEJouQyW7nllPK8RQ634RIkvN0mHe7ZA4AHmqn77xTaJkMGl8FmlFe3U6P+om8fl/+S7keppsQj0YlBYWF6WcpWKCmKIHnA4EZHKFwLD/1BrPqJnGG3Dy8eV2N63laUrAocQsiqcgXXEeLeXZNSVSqYgf3+VW9wH8FWbRsMDP4u19L/uaQQvSnLaPfTciHkXkPscavbRwUJWpZ9pi/G15vh8Eg45IWfVPj+Yz0OeeDoenVgBs45yoLyG9UMoW6RBZTgJHYIIBvxbNp4pt+jBszrBPATomao077WIQSpvIz5xXOfmZb2niqETDo9Ax2m8pleJ1yYo5IFXab/v266Q5Qo="
+    }
+}

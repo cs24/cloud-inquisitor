@@ -1,0 +1,12 @@
+{
+    "ec2_vpc_id":                   "vpc-4a254c2f",
+    "ec2_subnet_id":                "subnet-e7307482",
+    "ec2_source_ami":               "ami-96d568f6",
+    "ec2_instance_type":            "m3.large",
+    "ec2_region":                   "us-west-2",
+    "ec2_ssh_username":             "ubuntu",
+
+    "app_apt_upgrade":              "True",
+    "app_log_level":                "INFO",
+    "app_db_uri":                   "mysql://awsaudits:changeme@localhost:3306/awsaudits"
+}

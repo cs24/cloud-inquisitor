@@ -1,0 +1,13 @@
+--extra-index-url https://pypi.security.riotgames.com
+cinq-auditor-cloudtrail>=1.2.0
+cinq-auditor-domain-hijacking>=1.1.1
+cinq-auditor-ebs>=1.1.0
+cinq-auditor-iam>=1.2.0
+cinq-auditor-required-tags>=1.3.0
+cinq-auditor-vpc-flowlogs>=1.2.0
+cinq-collector-aws>=1.2.0
+cinq-collector-dns>=1.3.3
+cinq-scheduler-sqs>=1.4.0
+cinq-standalone-scheduler>=1.3.0
+cinq-auth-local>=1.2.0
+cinq-auth-onelogin-saml>=1.1.0

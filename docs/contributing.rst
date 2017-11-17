@@ -1,0 +1,41 @@
+############
+Contributing
+############
+
+We would love contributions to Cloud Inqusitor and so we've written this document to help you get you started on Cloud Inquisitor and contributing.
+
+====
+Docs
+====
+
+Within this **docs** directory, there's documentation on:
+
+* `Building with Packer <local-development/packer.rst>`_
+* `Building with Docker <local-development/docker.rst>`_
+* `Quickstart Guide <quickstart.rst>`_
+* `Issue Log <issues.rst>`_
+* `Roadmap for Cloud Inquisitor <roadmap.rst>`_
+
+==================
+Submitting changes
+==================
+
+*   Code should be accompanied by tests and documentation.
+*   Follow the existing code style. We try to follow `PEP8 <https://www.python.org/dev/peps/pep-0008/>`_.
+*   Please write good commit messages. Here are three blog posts on how to do it right:
+
+  * `Writing Git commit messages <http://365git.tumblr.com/post/3308646748/writing-git-commit-messages>`_
+  * `A Note About Git Commit Messages <http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html>`_
+  * `On commit messages <http://who-t.blogspot.ch/2009/12/on-commit-messages.html>`_
+
+*   We would prefer one branch per feature or fix. 
+
+  * Please keep branches small and on topic.
+
+*   Send a pull request to the ``develop`` branch. See the GitHub `pull request docs <https://help.github.com/articles/using-pull-requests>`_ for further information.
+
+====================
+Additional resources
+====================
+
+-   `GitHub documentation <https://help.github.com/>`_
