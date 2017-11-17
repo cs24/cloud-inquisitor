@@ -85,7 +85,7 @@ After adding the account, log out and log back in.
 Making Changes to your Code
 ===========================
 
-Do not make changes to the code running on the container, container storage is not persistent. 
+Do not make changes to the code running on the container; container storage is not persistent. 
 
 Instead, run the following sets of commands to get your code changes into the containers:
 
