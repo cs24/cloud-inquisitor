@@ -5,7 +5,7 @@ CloudInquisitor Backend
 This project provides two of the three pieces needed for the Cloud Inquisitor  system,
 namely the API backend service and the scheduler process responsible for fetching and auditing
 accounts. The code is built to be completely modular using ``pkg_resource`` entry points for
-loading modules as needed. This allows you to easily build third-party modules without having to update
+loading modules as needed. This allows you to easily build third-party modules without updating
 the original codebase.
 
 ==========
@@ -20,11 +20,11 @@ Authentication
 
 The backend service uses a JWT token based form of authentication, requiring the client to send an
 Authorization HTTP header with each request. Currently the only supported method of federated
-authentication is using the OneLogin based SAML workflow.
+authentication is the OneLogin based SAML workflow.
 
 There is also the option to disable the SAML based authentication in which case no authentication is
 required and all users of the system will have administrative privileges. This mode should only be
-used for local development, however for testing SAML based authentication we have a OneLogin
+used for local development, however for testing SAML based authentications we have a OneLogin
 application configured that will redirect to http://localhost based URL's and is the preferred method
 for local development to ensure proper testing of the SAML code.
 
@@ -38,8 +38,8 @@ Auditors are plugins which will alert and potentially take action based on data 
 Cloudtrail
 ----------
 
-The CloudTail auditor will ensure that CloudTrail has been enabled for all accounts configured in the
-Audits system. The system will automatically create a S3 bucket and SNS topics for log delivery notifications.
+The CloudTrail auditor will ensure that CloudTrail has been enabled for all accounts configured in the
+Audits system. The system will automatically create an S3 bucket and SNS topics for log delivery notifications.
 However, you must ensure that the proper access has been granted to the accounts attempting to log to a remote
 S3 bucket. SNS subscriptions will need to be confirmed through an external tool such as the CloudTrail app.
 
@@ -54,15 +54,15 @@ Configuration Options
 +---------------------------------------------+-------------------------------------------------------------+-------------------------------+----------+
 | ``AUDITOR_CLOUDTRAIL_BUCKET_NAME``          | S3 bucket where CloudTrail log files should be delivered    | `None`                        | Yes      |
 +---------------------------------------------+-------------------------------------------------------------+-------------------------------+----------+
-| ``AUDITOR_CLOUDTRAIL_BUCKET_REGION``        | The region where to store the S3 bucket                     | `us-west-2`                   | No       |
+| ``AUDITOR_CLOUDTRAIL_BUCKET_REGION``        | Region where you store the S3 bucket                     | `us-west-2`                   | No       |
 +---------------------------------------------+-------------------------------------------------------------+-------------------------------+----------+
 | ``AUDITOR_CLOUDTRAIL_BUCKET_ACCOUNT``       | AWS Account that owns the S3 bucket                         | `None`                        | Yes      |
 +---------------------------------------------+-------------------------------------------------------------+-------------------------------+----------+
 | ``AUDITOR_CLOUDTRAIL_GLOBAL_EVENTS_REGION`` | Region where global events (e.g. console logins) are logged | `us-west-2`                   | No       |
 +---------------------------------------------+-------------------------------------------------------------+-------------------------------+----------+
-| ``AUDITOR_CLOUDTRAIL_SNS_TOPIC_NAME``       | SNS Topic where log delivery notifications are sent.        | `cloudtrail-log-notification` | No       |
+| ``AUDITOR_CLOUDTRAIL_SNS_TOPIC_NAME``       | SNS Topic where log delivery notifications are sent        | `cloudtrail-log-notification` | No       |
 +---------------------------------------------+-------------------------------------------------------------+-------------------------------+----------+
-| ``AUDITOR_CLOUDTRAIL_SQS_QUEUE``            | Queue for SNS notifications to be delivered to.             | `None`                        | Yes      |
+| ``AUDITOR_CLOUDTRAIL_SQS_QUEUE``            | Queue for SNS notifications to be delivered to             | `None`                        | Yes      |
 +---------------------------------------------+-------------------------------------------------------------+-------------------------------+----------+
 
 ----------------
@@ -119,8 +119,7 @@ Configuration Options
 Tagging
 -------
 
-Cloud Inquisitor audits EC2 instances for **tagging compliance** and shutdowns or terminates instances if they are not brought 
-into compliance after a pre-defined amount of time.
+Cloud Inquisitor audits EC2 instances for **tagging compliance** and shutdowns or terminates instances if they are not brought into compliance after a pre-defined amount of time.
 
 
 **Note:** This is currently being extended to include all taggable AWS objects.
@@ -219,7 +218,7 @@ Add or Update Account
 Delete Account
 ^^^^^^^^^^^^^^
 
-Removes an account from the system after prompting for confirmation. All data associated with the account will also be deleted from the database and will not be able to be regenerated without fetching it from the AWS API.
+Removes an account from the system after prompting for confirmation. All data associated with the account will also be deleted from the database and cannot be regenerated without fetching it from the AWS API.
 
 ::
     
@@ -467,7 +466,7 @@ to administrative users.
 
     * ``GET`` - Get list of log entries based on filters
 
-        * ``limit`` - Number of entires returned per request. Optional, default ``100``
+        * ``limit`` - Number of entries returned per request. Optional, default ``100``
         * ``page`` - Offset to use for request, to pagination results. Optional, default ``0``
 
 * ``/logs/<int:log_event_id>``
