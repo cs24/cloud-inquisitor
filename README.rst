@@ -11,8 +11,8 @@ Cloud Inquisitor improves the security posture of an AWS footprint through:
 
 * monitoring AWS objects for ownership attribution, notifying account owners of unowned objects, and subsequently removing unowned AWS objects if ownership is not resolved.
 * detecting `domain hijacking <https://labs.detectify.com/2014/10/21/hostile-subdomain-takeover-using-herokugithubdesk-more/>`_.
-* verifying security services such as Cloudtrail and VPC Flowlogs.
-* managing IAM policies across multiple accounts.
+* verifying security services such as `Cloudtrail <https://aws.amazon.com/cloudtrail/>`_ and `VPC Flowlogs <https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html>`_.
+* managing `IAM policies <https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html>`_ across multiple accounts.
 
 ============
 Architecture
