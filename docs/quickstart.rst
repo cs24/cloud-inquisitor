@@ -1,18 +1,16 @@
-.. _`quickstart`:
+**************************************
+Quick Start Guide for Cloud Inquisitor
+**************************************
 
-*************************************
-Quick Start Guide for CloudInquisitor
-*************************************
-
-This tutorial will walk you through installing and configuring ``CloudInquisitor``. The tool currently runs on *Amazon Web Services* (AWS) but it has been designed to be platform-independent.
+This tutorial will walk you through installing and configuring ``Cloud Inquisitor``. The tool currently runs on *Amazon Web Services* (AWS) but it has been designed to be platform-independent.
 
 This tutorial assumes you are familiar with AWS & that you have an `AWS`_ account. You'll need to retrieve your ``Access Key ID`` and ``Secret Access Key`` from the web-based console.
 
 .. _`AWS`: https://aws.amazon.com/
 
-==========================
-Installing CloudInquisitor
-==========================
+===========================
+Installing Cloud Inquisitor
+===========================
 
 ------------------
 Build Requirements

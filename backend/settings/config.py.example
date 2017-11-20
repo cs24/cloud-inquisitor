@@ -20,7 +20,7 @@ AWS_API_ACCESS_KEY = ''
 AWS_API_SECRET_KEY = ''
 
 # Instance Profile ARN (only used if using static API keys)
-AWS_API_INSTANCE_ROLE_ARN = 'arn:aws:iam::<ACCOUNT_ID>:role/CloudInquisitorInstanceProfile'
+AWS_API_INSTANCE_ROLE_ARN = 'arn:aws:iam::<ACCOUNT_ID>:role/Cloud-InquisitorInstanceProfile'
 
 # Flask session secret_key
 SECRET_KEY = 'verysecretkeyhere'

@@ -1,6 +1,6 @@
-###########################
+***************************
 Local Development in Packer
-###########################
+***************************
 
 ===============================================
 Local Development - Starting cinq-backend
@@ -10,7 +10,7 @@ Nginx should already be configured to serve the front-end and forward backend re
 
 You can run ``python3 manage.py`` to see a list of project tasks (e.g., runserver, db reload, auth config).
 
-1. Start the CloudInquisitor *cinq* ``runserver`` target for development mode (auto-load python changes.) ``run_api_server`` is the production target.
+1. Start the Cloud Inquisitor *cinq* ``runserver`` target for development mode (auto-load python changes.) ``run_api_server`` is the production target.
 ::
 
     python3 manage.py runserver
@@ -99,7 +99,7 @@ Creating Launch Configuration
 4. On the first screen, click ``Edit AMI`` and paste the AMI ID you got from the packer build (or search by ami name).
 5. Once you select the new AMI, the console will ask you to confirm that you want to proceed with the new AMI, select ``Yes, I want to continue with this AMI`` and click Next.
 6. On the instance type page, simply click ``Next: Configure details`` without modifying anything. The correct instance type will be pre-selected.
-7. On the Details page you want to modify the Name attribute of the launch configuration. Name should follow the standard ``CloudInquisitor-<year>-<month>-<day>_<index>`` with index being an increasing number that resets each day. So the first launch configuration for a specific day is _1. Ideally you shouldn't have to make multiple revisions in a single day, but this lets us easily revert to a previous version if we need to. You should ensure that the IAM role is correctly set to ``CloudInquisitorInstanceProfile``.
+7. On the Details page you want to modify the Name attribute of the launch configuration. Name should follow the standard ``cloud-inquisitor-<year>-<month>-<day>_<index>`` with index being an increasing number that resets each day. So the first launch configuration for a specific day is _1. Ideally you shouldn't have to make multiple revisions in a single day, but this lets us easily revert to a previous version if we need to. You should ensure that the IAM role is correctly set to ``cloud-inquisitorInstanceProfile``.
 8. After changing the launch configuration name, click the Next buttons until you reach the Review page. Make sure all the changes you made are reflected on the Review page and then hit ``Create launch configuration``. Once you click create it will ask you to select the key-pair, select an appropriate key-pair and click the Create button. Our base AMI have the InfraSec SSH keys baked into it, so you should not need to worry too much about the key-pair, but its still a good idea to use a key-pair the entire team has access to, just in case.
 
 -------------------------

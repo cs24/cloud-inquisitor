@@ -1,6 +1,6 @@
-***********************
-CloudInquisitor Backend
-***********************
+************************
+Cloud Inquisitor Backend
+************************
 
 This project provides two of the three pieces needed for the Cloud Inquisitor  system,
 namely the API backend service and the scheduler process responsible for fetching and auditing
@@ -110,7 +110,7 @@ Configuration Options
 +--------------------------------+---------------------------------------------------------------------------+--------------------------------+-----------------+
 | ``AUDITOR_IAM_GIT_SERVER``     | Hostname of the Github server to clone policy repo from                   | ``github.com``                 | No              |
 +--------------------------------+---------------------------------------------------------------------------+--------------------------------+-----------------+
-| ``AUDITOR_IAM_GIT_REPO``       | Name of the Git repo to close                                             | ``riotgames/CloudInquisitor``  | No              |
+| ``AUDITOR_IAM_GIT_REPO``       | Name of the Git repo to close                                             | ``riotgames/cloud-inquisitor`` | No              |
 +--------------------------------+---------------------------------------------------------------------------+--------------------------------+-----------------+
 | ``AUDITOR_IAM_GIT_AUTH_TOKEN`` | Github auth token for API calls                                           | ``None``                       | Yes, if enabled |
 +--------------------------------+---------------------------------------------------------------------------+--------------------------------+-----------------+

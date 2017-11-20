@@ -1,6 +1,6 @@
-###############
+****************
 Cloud Inquisitor
-###############
+****************
 `Cloud Inquisitor Latest </releases/latest>`_
 
 ============
