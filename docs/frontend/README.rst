@@ -21,4 +21,4 @@ and then run the following commands:
     npm install
     node_modules/.bin/gulp
 
-This will result in production-ready (minified) HTML and Javascript code being available in the ``dist`` folder.
+This will result in production-ready (minified) HTML and Javascript code which can be found in the ``dist`` folder.
