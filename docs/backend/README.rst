@@ -191,7 +191,7 @@ Accounts
 --------
 
 The accounts command allows updates to the AWS Accounts configured for the Audits system. The CLI allows
-you to add, update and delete accounts from the system if for some reason the web frontend isn't working.
+you to add, update, and delete accounts from the system.
 
 ^^^^^^^^^^^^^^^^^^^^^
 Add or Update Account
@@ -219,9 +219,7 @@ Add or Update Account
 Delete Account
 ^^^^^^^^^^^^^^
 
-Removes an account from the system, will prompt for confirmation before account is deleted. When removed
-all data associated with the account will also be deleted from the database and will not be able to be
-regenerated without fetching it all from the AWS API.
+Removes an account from the system after prompting for confirmation. All data associated with the account will also be deleted from the database and will not be able to be regenerated without fetching it from the AWS API.
 
 ::
     
@@ -263,8 +261,7 @@ Configuration Options
 
 **Arguments**
 
-In addition to the values from the configuration file, you can also override them using command
-line arguments.
+In addition to the values from the configuration file, you can also override them using command line arguments.
 
 +--------+-------------+---------------+----------+
 | Option | Description | Default Value | Required |
@@ -278,8 +275,7 @@ line arguments.
 run_scheduler
 -------------
 
-Executes the scheduler daemon. This is the main workhorse for gathering information and will execute
-the enabled plugins on their pre-defined intervals.
+Executes the scheduler daemon. This is the main workhorse for gathering information and will execute the enabled plugins on their pre-defined intervals.
 
 ::
 
@@ -298,8 +294,7 @@ Configuration Options
 
 **Arguments**
 
-In addition to the values from the configuration file, you can also override some of them using command
-line arguments.
+In addition to the values from the configuration file, you can also override some of them using command line arguments.
 
 +--------+-------------+---------------+----------+
 | Option | Description | Default Value | Required |
@@ -311,9 +306,7 @@ line arguments.
 update_regions
 --------------
 
-Updates the local cache of EC2 regions from the AWS API. This command must be run the first time the
-Audits system is installed on a machine, and should be run whenever there is a change to the available
-regions from AWS.
+Updates the local cache of EC2 regions from the AWS API. This command must be run the first time the Audits system is installed on a machine, and should be run whenever there is a change to the available regions from AWS.
 
 ::
 
@@ -321,8 +314,7 @@ regions from AWS.
 
 **Arguments**
 
-If no secret or access key is provided on the CLI, the system will pick a random configured account
-to use for this API call.
+If no secret or access key is provided on the CLI, the system will pick a random configured account to use for this API call.
 
 +--------+-------------+---------------+----------+
 | Option | Description | Default Value | Required |
@@ -335,15 +327,13 @@ to use for this API call.
 domain_hijacking
 ----------------
 
-This sub-module contains all the collection logic for the domain hijacking auditor. Due to the size
-and complexity of the code, it was provided as a separate sub-module instead of inline for the auditor.
+This sub-module contains all the collection logic for the domain hijacking auditor. Due to the size and complexity of the code, it was provided as a separate sub-module instead of inline for the auditor.
 
 -----
 views
 -----
 
-This module contains all the views (REST endpoints) for the Flask application. All endpoint URL's in the
-sections below are prefixed with ``/api/v1``.
+This module contains all the views (REST endpoints) for the Flask application. All endpoint URL's in the sections below are prefixed with ``/api/v1``.
 
 --------
 \__init\__
@@ -488,8 +478,7 @@ to administrative users.
 metadata
 --------
 
-Returns metadata used by frontend to control access to UI elements, as well as information about
-AWS accounts and regions available to the user.
+Returns metadata used by frontend to control access to UI elements, as well as information about AWS accounts and regions available to the user.
 
 **REST Endpoints**
 
@@ -501,7 +490,7 @@ AWS accounts and regions available to the user.
 reports
 -------
 
-Returns information for reporting functionality such as Old EC2 Instances and tagging compliance
+Returns information for reporting functionality such as old EC2 instances and tagging compliance.
 
 **REST Endpoints**
 
