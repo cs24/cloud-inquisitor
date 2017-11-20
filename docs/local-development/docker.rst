@@ -5,10 +5,7 @@ Local Development in Docker
 Note: The instructions here are **NOT** for production. They are strictly for local development.
 
 * All ``docker-compose`` commands should be run from inside ``/path/to/cloundinquisitor/docker``.
-* After following the `Initial setup`_, you can bring the whole system up with ``docker-compose up -d``. 
-* Find other `tips here`_.
-
-.. _`tips here`: `Tips`_
+* After following the `Initial Setup`_, you can bring the whole system up with ``docker-compose up -d``. 
 
 ============
 Requirements
@@ -16,13 +13,13 @@ Requirements
 * docker >= 17.06.0
 * docker-compose 
 * Internet Access
-* A smile :)
+* A smile
 
 ==========
 Containers
 ==========
-* db: Mysql database server with ``3306`` exposed to the docker network and bound on the same port on host.
-* api: The backend API with ``5000`` exposed to the docker network and bound on the same port on host.
+* db: Mysql database server with ``3306`` exposed to the Docker network and bound on the same port on host.
+* api: The backend API with ``5000`` exposed to the Docker network and bound on the same port on host.
 * frontend: The front end for CloudInquisitor with ``80`` exposed on the docker network and bound on port ``8000`` on host.
 * scheduler: The standalone scheduler.
 
@@ -88,7 +85,7 @@ After adding the account, log out and log back in.
 Making Changes to your Code
 ===========================
 
-Do not make changes to the code running on the container, container storage is not persistent. 
+Do not make changes to the code running on the container; container storage is not persistent. 
 
 Instead, run the following sets of commands to get your code changes into the containers:
 
