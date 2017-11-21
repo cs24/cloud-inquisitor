@@ -46,11 +46,11 @@ Files Directory
 
     * Install location: ``BACKEND_INSTALL_BASE/settings/production.py``
 
-* `nginx-nossl.conf </packer/files/nginx-ssl.py>`_ - the configuration files used for nginx, if SSL has not been enabled.
+* `nginx-nossl.conf </packer/files/nginx-nossl.conf>`_ - the configuration files used for nginx, if SSL has not been enabled.
 
     * Install location: ``/etc/nginx/sites-available/cloudinquisitor.conf``
 
-* `nginx-ssl.conf </packer/files/nginx-ssl.py>`_ - the configuration files used for nginx, if SSL has been enabled.
+* `nginx-ssl.conf </packer/files/nginx-ssl.conf>`_ - the configuration files used for nginx, if SSL has been enabled.
 
     * Install location: ``/etc/nginx/sites-available/cloudinquisitor.conf``
 
