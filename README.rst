@@ -1,7 +1,7 @@
 ****************
 Cloud Inquisitor
 ****************
-`Cloud Inquisitor Latest </releases/latest>`_
+`Cloud Inquisitor Latest <../../releases/latest>`_
 
 ============
 Introduction
