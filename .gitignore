@@ -9,7 +9,8 @@ setenv.sh
 *.pid
 .vagrant
 logs
-!frontend/*
+!frontend/gulp/*
+!frontend/source/javascript/components/logs
 run.py
 */settings/*.py
 */variables/*.json
@@ -20,9 +21,9 @@ test.py
 aws_regions.json
 
 # Node builds etc
-#node_modules
-#bundle.js
-#vendor.js
+node_modules
+bundle.js
+vendor.js
 
 # Dont check in certificates
 *.crt
