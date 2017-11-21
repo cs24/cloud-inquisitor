@@ -50,6 +50,6 @@ This project has a **docs** directory that contains many resources that will hel
 * `Source Code <https://www.github.com/riotgames/cloud-inquisitor>`_
 * `Contribution Guidelines <docs/contributing.rst>`_
 * `Contributors <docs/contributors.rst>`_
-* `Roadmap <docs/roadmap.rst>`_
+* `Roadmap <../../milestones>`_
 * `Issue Tracker <../../issues>`_
 * `Slack Chat Room <https://cinq.slack.com>`_
