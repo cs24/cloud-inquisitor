@@ -1,19 +1,18 @@
-***********************
-CloudInquisitor Backend
-***********************
+************************
+Cloud Inquisitor Backend
+************************
 
 This project provides two of the three pieces needed for the Cloud Inquisitor  system,
 namely the API backend service and the scheduler process responsible for fetching and auditing
 accounts. The code is built to be completely modular using ``pkg_resource`` entry points for
-loading modules as needed. This allows you to easily build third-party modules without having to update
+loading modules as needed. This allows you to easily build third-party modules without updating
 the original codebase.
 
 ==========
 API Server
 ==========
 
-The API server provides a RESTful interface for the `frontend <https://www.github.com/riotgames/inquisitor/frontend>`_.
-web client.
+The API server provides a RESTful interface for the `frontend <https://www.github.com/riotgames/inquisitor/frontend>`_ web client.
 
 ==============
 Authentication
@@ -21,11 +20,11 @@ Authentication
 
 The backend service uses a JWT token based form of authentication, requiring the client to send an
 Authorization HTTP header with each request. Currently the only supported method of federated
-authentication is using the OneLogin based SAML workflow.
+authentication is the OneLogin based SAML workflow.
 
 There is also the option to disable the SAML based authentication in which case no authentication is
 required and all users of the system will have administrative privileges. This mode should only be
-used for local development, however for testing SAML based authentication we have a OneLogin
+used for local development, however for testing SAML based authentications we have a OneLogin
 application configured that will redirect to http://localhost based URL's and is the preferred method
 for local development to ensure proper testing of the SAML code.
 
@@ -39,8 +38,8 @@ Auditors are plugins which will alert and potentially take action based on data 
 Cloudtrail
 ----------
 
-The CloudTail auditor will ensure that CloudTrail has been enabled for all accounts configured in the
-Audits system. The system will automatically create a S3 bucket and SNS topics for log delivery notifications.
+The CloudTrail auditor will ensure that CloudTrail has been enabled for all accounts configured in the
+Audits system. The system will automatically create an S3 bucket and SNS topics for log delivery notifications.
 However, you must ensure that the proper access has been granted to the accounts attempting to log to a remote
 S3 bucket. SNS subscriptions will need to be confirmed through an external tool such as the CloudTrail app.
 
@@ -55,28 +54,24 @@ Configuration Options
 +---------------------------------------------+-------------------------------------------------------------+-------------------------------+----------+
 | ``AUDITOR_CLOUDTRAIL_BUCKET_NAME``          | S3 bucket where CloudTrail log files should be delivered    | `None`                        | Yes      |
 +---------------------------------------------+-------------------------------------------------------------+-------------------------------+----------+
-| ``AUDITOR_CLOUDTRAIL_BUCKET_REGION``        | The region where to store the S3 bucket                     | `us-west-2`                   | No       |
+| ``AUDITOR_CLOUDTRAIL_BUCKET_REGION``        | Region where you store the S3 bucket                     | `us-west-2`                   | No       |
 +---------------------------------------------+-------------------------------------------------------------+-------------------------------+----------+
 | ``AUDITOR_CLOUDTRAIL_BUCKET_ACCOUNT``       | AWS Account that owns the S3 bucket                         | `None`                        | Yes      |
 +---------------------------------------------+-------------------------------------------------------------+-------------------------------+----------+
 | ``AUDITOR_CLOUDTRAIL_GLOBAL_EVENTS_REGION`` | Region where global events (e.g. console logins) are logged | `us-west-2`                   | No       |
 +---------------------------------------------+-------------------------------------------------------------+-------------------------------+----------+
-| ``AUDITOR_CLOUDTRAIL_SNS_TOPIC_NAME``       | SNS Topic where log delivery notifications are sent.        | `cloudtrail-log-notification` | No       |
+| ``AUDITOR_CLOUDTRAIL_SNS_TOPIC_NAME``       | SNS Topic where log delivery notifications are sent        | `cloudtrail-log-notification` | No       |
 +---------------------------------------------+-------------------------------------------------------------+-------------------------------+----------+
-| ``AUDITOR_CLOUDTRAIL_SQS_QUEUE``            | Queue for SNS notifications to be delivered to.             | `None`                        | Yes      |
+| ``AUDITOR_CLOUDTRAIL_SQS_QUEUE``            | Queue for SNS notifications to be delivered to             | `None`                        | Yes      |
 +---------------------------------------------+-------------------------------------------------------------+-------------------------------+----------+
 
 ----------------
 Domain Hijacking
 ----------------
 
-The domain hijacking auditor will attempt to identify misconfigured DNS entries that would potentially
-result in third parties being able to take over legitimate Riot owned DNS names and serve malicious
-content to players from a real location.
+The domain hijacking auditor will attempt to identify misconfigured DNS entries that would potentially result in third parties being able to take over legitimate DNS names and serve malicious content from a real location.
 
-This auditor will fetch information from AWS Route53, CloudFlare and our internal F5 based DNS servers,
-and validate the records found against our known owned S3 buckets, Elastic BeanStalks and CloudFront CDN
-distributions.
+This auditor will fetch information from AWS Route53, CloudFlare, and our internal F5 based DNS servers and validate the records found against our known owned S3 buckets, Elastic BeanStalks, and CloudFront CDN distributions.
 
 ^^^^^^^^^^^^^^^^^^^^^
 Configuration Options
@@ -115,7 +110,7 @@ Configuration Options
 +--------------------------------+---------------------------------------------------------------------------+--------------------------------+-----------------+
 | ``AUDITOR_IAM_GIT_SERVER``     | Hostname of the Github server to clone policy repo from                   | ``github.com``                 | No              |
 +--------------------------------+---------------------------------------------------------------------------+--------------------------------+-----------------+
-| ``AUDITOR_IAM_GIT_REPO``       | Name of the Git repo to close                                             | ``riotgames/CloudInquisitor``  | No              |
+| ``AUDITOR_IAM_GIT_REPO``       | Name of the Git repo to close                                             | ``riotgames/cloud-inquisitor`` | No              |
 +--------------------------------+---------------------------------------------------------------------------+--------------------------------+-----------------+
 | ``AUDITOR_IAM_GIT_AUTH_TOKEN`` | Github auth token for API calls                                           | ``None``                       | Yes, if enabled |
 +--------------------------------+---------------------------------------------------------------------------+--------------------------------+-----------------+
@@ -124,8 +119,7 @@ Configuration Options
 Tagging
 -------
 
-Cloud Inquisitor audits EC2 instances for **tagging compliance** and shutdowns or terminates instances if they are not brought 
-into compliance after a pre-defined amount of time.
+Cloud Inquisitor audits EC2 instances for **tagging compliance** and shutdowns or terminates instances if they are not brought into compliance after a pre-defined amount of time.
 
 
 **Note:** This is currently being extended to include all taggable AWS objects.
@@ -196,7 +190,7 @@ Accounts
 --------
 
 The accounts command allows updates to the AWS Accounts configured for the Audits system. The CLI allows
-you to add, update and delete accounts from the system if for some reason the web frontend isn't working.
+you to add, update, and delete accounts from the system.
 
 ^^^^^^^^^^^^^^^^^^^^^
 Add or Update Account
@@ -224,9 +218,7 @@ Add or Update Account
 Delete Account
 ^^^^^^^^^^^^^^
 
-Removes an account from the system, will prompt for confirmation before account is deleted. When removed
-all data associated with the account will also be deleted from the database and will not be able to be
-regenerated without fetching it all from the AWS API.
+Removes an account from the system after prompting for confirmation. All data associated with the account will also be deleted from the database and cannot be regenerated without fetching it from the AWS API.
 
 ::
     
@@ -268,8 +260,7 @@ Configuration Options
 
 **Arguments**
 
-In addition to the values from the configuration file, you can also override them using command
-line arguments.
+In addition to the values from the configuration file, you can also override them using command line arguments.
 
 +--------+-------------+---------------+----------+
 | Option | Description | Default Value | Required |
@@ -283,8 +274,7 @@ line arguments.
 run_scheduler
 -------------
 
-Executes the scheduler daemon. This is the main workhorse for gathering information and will execute
-the enabled plugins on their pre-defined intervals.
+Executes the scheduler daemon. This is the main workhorse for gathering information and will execute the enabled plugins on their pre-defined intervals.
 
 ::
 
@@ -303,8 +293,7 @@ Configuration Options
 
 **Arguments**
 
-In addition to the values from the configuration file, you can also override some of them using command
-line arguments.
+In addition to the values from the configuration file, you can also override some of them using command line arguments.
 
 +--------+-------------+---------------+----------+
 | Option | Description | Default Value | Required |
@@ -316,9 +305,7 @@ line arguments.
 update_regions
 --------------
 
-Updates the local cache of EC2 regions from the AWS API. This command must be run the first time the
-Audits system is installed on a machine, and should be run whenever there is a change to the available
-regions from AWS.
+Updates the local cache of EC2 regions from the AWS API. This command must be run the first time the Audits system is installed on a machine, and should be run whenever there is a change to the available regions from AWS.
 
 ::
 
@@ -326,8 +313,7 @@ regions from AWS.
 
 **Arguments**
 
-If no secret or access key is provided on the CLI, the system will pick a random configured account
-to use for this API call.
+If no secret or access key is provided on the CLI, the system will pick a random configured account to use for this API call.
 
 +--------+-------------+---------------+----------+
 | Option | Description | Default Value | Required |
@@ -340,15 +326,13 @@ to use for this API call.
 domain_hijacking
 ----------------
 
-This sub-module contains all the collection logic for the domain hijacking auditor. Due to the size
-and complexity of the code, it was provided as a separate sub-module instead of inline for the auditor.
+This sub-module contains all the collection logic for the domain hijacking auditor. Due to the size and complexity of the code, it was provided as a separate sub-module instead of inline for the auditor.
 
 -----
 views
 -----
 
-This module contains all the views (REST endpoints) for the Flask application. All endpoint URL's in the
-sections below are prefixed with ``/api/v1``.
+This module contains all the views (REST endpoints) for the Flask application. All endpoint URL's in the sections below are prefixed with ``/api/v1``.
 
 --------
 \__init\__
@@ -482,7 +466,7 @@ to administrative users.
 
     * ``GET`` - Get list of log entries based on filters
 
-        * ``limit`` - Number of entires returned per request. Optional, default ``100``
+        * ``limit`` - Number of entries returned per request. Optional, default ``100``
         * ``page`` - Offset to use for request, to pagination results. Optional, default ``0``
 
 * ``/logs/<int:log_event_id>``
@@ -493,8 +477,7 @@ to administrative users.
 metadata
 --------
 
-Returns metadata used by frontend to control access to UI elements, as well as information about
-AWS accounts and regions available to the user.
+Returns metadata used by frontend to control access to UI elements, as well as information about AWS accounts and regions available to the user.
 
 **REST Endpoints**
 
@@ -506,7 +489,7 @@ AWS accounts and regions available to the user.
 reports
 -------
 
-Returns information for reporting functionality such as Old EC2 Instances and tagging compliance
+Returns information for reporting functionality such as old EC2 instances and tagging compliance.
 
 **REST Endpoints**
 

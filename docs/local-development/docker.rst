@@ -4,11 +4,8 @@ Local Development in Docker
 
 Note: The instructions here are **NOT** for production. They are strictly for local development.
 
-* All ``docker-compose`` commands should be run from inside ``/path/to/cloundinquisitor/docker``.
-* After following the `Initial setup`_, you can bring the whole system up with ``docker-compose up -d``. 
-* Find other `tips here`_.
-
-.. _`tips here`: `Tips`_
+* All ``docker-compose`` commands should be run from inside ``/path/to/clound-inquisitor/docker``.
+* After following the `Initial Setup`_, you can bring the whole system up with ``docker-compose up -d``. 
 
 ============
 Requirements
@@ -16,14 +13,14 @@ Requirements
 * docker >= 17.06.0
 * docker-compose 
 * Internet Access
-* A smile :)
+* A smile
 
 ==========
 Containers
 ==========
-* db: Mysql database server with ``3306`` exposed to the docker network and bound on the same port on host.
-* api: The backend API with ``5000`` exposed to the docker network and bound on the same port on host.
-* frontend: The front end for CloudInquisitor with ``80`` exposed on the docker network and bound on port ``8000`` on host.
+* db: Mysql database server with ``3306`` exposed to the Docker network and bound on the same port on host.
+* api: The backend API with ``5000`` exposed to the Docker network and bound on the same port on host.
+* frontend: The front end for Cloud Inquisitor with ``80`` exposed on the docker network and bound on port ``8000`` on host.
 * scheduler: The standalone scheduler.
 
 ============
@@ -31,8 +28,8 @@ Requirements
 ============
 
 * MySql server (provided in ``docker-compose``).
-* User in AWS has trust permission for CloudInquisitor ``InstanceProfile``.
-* AWS API keys updated in ``/path/to/cloudinquisitor/docker/dev-backend-settings.py``.
+* User in AWS has trust permission for Cloud Inquisitor ``InstanceProfile``.
+* AWS API keys updated in ``/path/to/cloud-inquisitor/docker/dev-backend-settings.py``.
 
 =============
 Initial Setup
@@ -49,11 +46,11 @@ Initial Setup
 
     docker-compose up -d db
 
-3. Setup database for CloudInquisitor and start the API server:
+3. Setup database for Cloud Inquisitor and start the API server:
 
 ::
 
-    docker-compose run api bash -c "cd /cloudinquisitor && source env/bin/activate && python3 manage.py db upgrade && python3 manage.py setup --headless"
+    docker-compose run api bash -c "cd /cloud-inquisitor && source env/bin/activate && python3 manage.py db upgrade && python3 manage.py setup --headless"
     docker-compose up -d api
 
 4. Retrieve your admin password:
@@ -88,7 +85,7 @@ After adding the account, log out and log back in.
 Making Changes to your Code
 ===========================
 
-Do not make changes to the code running on the container, container storage is not persistent. 
+Do not make changes to the code running on the container; container storage is not persistent. 
 
 Instead, run the following sets of commands to get your code changes into the containers:
 
@@ -109,9 +106,9 @@ Limitations
 Tips
 ====
 
-* All ``docker-compose`` commands should be run from inside ``/path/to/cloudinquisitor/docker``.
+* All ``docker-compose`` commands should be run from inside ``/path/to/cloud-inquisitor/docker``.
 * After following the [initial setup](#initial-setup), you can bring the whole system up with ``docker-compose up -d``. 
-* By default, the database persists and the volume located at ``/path/to/cloudinquisitor/docker/database``
+* By default, the database persists and the volume located at ``/path/to/cloud-inquisitor/docker/database``
 * To stop all services run ``docker-compose down``
 * To view logs run ``docker-compose logs``
 

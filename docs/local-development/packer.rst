@@ -1,6 +1,6 @@
-###########################
+***************************
 Local Development in Packer
-###########################
+***************************
 
 ===============================================
 Local Development - Starting cinq-backend
@@ -8,42 +8,47 @@ Local Development - Starting cinq-backend
 Nginx should already be configured to serve the front-end and forward backend requests to flask.
 (``cat /etc/nginx/sites-enabled/cinq.conf``)
 
-You can run ``python3 manage.py`` to see a list of project tasks (e.g., runserver, db reload, auth config)
-1. Start the CloudInquisitor *cinq* ``runserver`` target for development mode (auto-load python changes.) ``run_api_server`` is production target.::
+You can run ``python3 manage.py`` to see a list of project tasks (e.g., runserver, db reload, auth config).
+
+1. Start the Cloud Inquisitor *cinq* ``runserver`` target for development mode (auto-load python changes.) ``run_api_server`` is the production target.
+::
 
     python3 manage.py runserver
 
-2. Start scheduler to fetch aws data and other scheduled tasks.::
+2. Start scheduler to fetch aws data and other scheduled tasks.
+::
 
     python3 manage.py run_scheduler
 
-3. (Alternative) Run using supervisord.::
+3. (Alternative) Run using supervisor.
+::
    
     # service supervisor start
     # supervisorctl stop cinq cinq-scheduler
     # supervisorctl start cinq cinq-scheduler
   
-4. Get generated local admin password.::
+4. Get generated local admin password.
+::
 
     grep password: /opt/cinq-backend/logs/apiserver.log*
 
 5. Browse to https://localhost.
 
 If using a virtual machine, you may need to map ``127.0.0.1:443`` to the guest's port 443.
-You might also need to manually browse to https://localhost/login.
+You may also need to manually browse to https://localhost/login.
 
 ===========================================================
 Local Development - SSO and AWS Key Management Service
 ===========================================================
-Local development configuration defaults to builtin authentication. Further customization is required to work with features such as Single-Sign On (SSO) and AWS Key Management Services.
+Local development configuration defaults to built in authentication. Further customization is required to work with features such as Single-Sign On (SSO) and AWS Key Management Services.
 
 =================
 Testing the build
 =================
 
-Once you have a successful AMI built you should launch a new EC2 Instance based off the AMI to ensure that everything was installed correctly. Simply go to the EC2 console and Launch Instance,
+Once you have a successful AMI built you should launch a new EC2 Instance based off the AMI to ensure that everything was installed correctly.
 
-* Launch **EC2** from with with your AWS IAM Console & then select the AMI you have just created.
+* Launch **EC2** from within your AWS IAM Console & then select the AMI you have just created.
 
 * Create from AMI
 
@@ -82,7 +87,7 @@ Once you have verified that everything is running as expected you can terminate 
 AWS Deployment - AutoScalingGroup launch configurations
 -------------------------------------------------------
 
-Once you have tested the image is good, you want to update the Launch Configuration for the ASG. Follow the steps below.
+Once you have tested that the image is good, update the Launch Configuration for the ASG following the steps below.
 
 -----------------------------
 Creating Launch Configuration
@@ -94,7 +99,7 @@ Creating Launch Configuration
 4. On the first screen, click ``Edit AMI`` and paste the AMI ID you got from the packer build (or search by ami name).
 5. Once you select the new AMI, the console will ask you to confirm that you want to proceed with the new AMI, select ``Yes, I want to continue with this AMI`` and click Next.
 6. On the instance type page, simply click ``Next: Configure details`` without modifying anything. The correct instance type will be pre-selected.
-7. On the Details page you want to modify the Name attribute of the launch configuration. Name should follow the standard ``CloudInquisitor-<year>-<month>-<day>_<index>`` with index being an increasing number based per day. So the first launch configuration for a specific day is _1. Ideally you shouldn't have to make multiple revisions in a single day, but this lets us easily revert to a previous version if we need to. You should ensure that the IAM role is correctly set to ``CloudInquisitorInstanceProfile``.
+7. On the Details page you want to modify the Name attribute of the launch configuration. Name should follow the standard ``cloud-inquisitor-<year>-<month>-<day>_<index>`` with index being an increasing number that resets each day. So the first launch configuration for a specific day is _1. Ideally you shouldn't have to make multiple revisions in a single day, but this lets us easily revert to a previous version if we need to. You should ensure that the IAM role is correctly set to ``cloud-inquisitorInstanceProfile``.
 8. After changing the launch configuration name, click the Next buttons until you reach the Review page. Make sure all the changes you made are reflected on the Review page and then hit ``Create launch configuration``. Once you click create it will ask you to select the key-pair, select an appropriate key-pair and click the Create button. Our base AMI have the InfraSec SSH keys baked into it, so you should not need to worry too much about the key-pair, but its still a good idea to use a key-pair the entire team has access to, just in case.
 
 -------------------------
@@ -108,7 +113,7 @@ Updating AutoScalingGroup
 5. With the ASG selected, click on the ``Instances`` tab in the details pane. 
 6. Click on the instance ID to be taken to the details page for the EC2 instance.
 7. Right click EC2 Instance and select terminate. This will trigger the ASG to launch a new instance from the updated launch configuration on the new AMI. This process takens 3-5 minutes during which time ``Cloud Inquisitor`` will be unavailable.
-8. Go back to the ASG details page for the Cloud Inquisitor ASG, and by clicking the Refresh icon monitor that a new instance is being launched and goes into ``InService`` status. Once the new instance is in service verify that you are able to log into the UI at ``https://cloudinquisitor.<your_domain>/`` or whatever the relevant URL is.
+8. Go back to the ASG details page for the Cloud Inquisitor ASG, and by clicking the Refresh icon monitor that a new instance is being launched and goes into ``InService`` status. Once the new instance is in service, verify that you are able to log into the UI at ``https://cloudinquisitor.<your_domain>/`` or whatever the relevant URL is.
 
 --------------------------------------
 Connect to new instance and upgrade DB

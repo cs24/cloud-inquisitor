@@ -1,37 +1,36 @@
-###############
-CloudInquisitor
-###############
-`CloudInquisitor Latest </releases/latest>`_
+****************
+Cloud Inquisitor
+****************
+
+.. image:: docs/images/cloud-inquisitor_logo.png
 
 ============
 Introduction
 ============
 
-CloudInquisitor improves the security posture of your AWS 
-account through:
+Cloud Inquisitor improves the security posture of an AWS footprint through:
 
-* monitoring the AWS objects for ownership attribution, notifying account owners of unowned objects and subsequently removing unowned AWS objects, if ownership is not resolved.
+* monitoring AWS objects for ownership attribution, notifying account owners of unowned objects, and subsequently removing unowned AWS objects if ownership is not resolved.
 * detecting `domain hijacking <https://labs.detectify.com/2014/10/21/hostile-subdomain-takeover-using-herokugithubdesk-more/>`_.
-* verification of services such as Cloudtrail and VPC Flowlogs being enabled with the capability to enable if disabled.
-* management of IAM policies across multiple accounts.
+* verifying security services such as `Cloudtrail <https://aws.amazon.com/cloudtrail/>`_ and `VPC Flowlogs <https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html>`_.
+* managing `IAM policies <https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html>`_ across multiple accounts.
+
+`Cloud Inquisitor Latest <../../releases/latest>`_
 
 ============
 Architecture
 ============
 
-Typically CloudInquisitor runs in a "Security" or "Audit" 
-account with cross-account access through the use of 
-`AssumeRole <https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html>`_.
+Typically Cloud Inquisitor runs in a "Security" or "Audit" account with cross-account access through the use of `AssumeRole <https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html>`_.
 
 =========
 Platforms
 =========
 
-CloudInquisitor works on Python 3.5 or higher and it has been 
-known to work on Ubuntu 16.04. 
+Cloud Inquisitor works on Python 3.5 or higher and Ubuntu 16.04. 
 
 * Production deployment is done through Packer.
-* Development-wise, you can either use Docker or Packer.
+* Development supports deployment via Docker or Packer.
 
 Please see the `Resources`_ section below for further information.
 
@@ -39,24 +38,21 @@ Please see the `Resources`_ section below for further information.
 Contact
 =======
 
-Any questions or comments regarding this project can be made 
-via the project's `Slack Chat Room <https://cinq.slack.com>`_.
+Any questions or comments regarding this project can be made via the project's `Slack Chat Room <https://cloud-inquisitor.slack.com>`_.
 
 =========
 Resources
 =========
 
-This project has a **docs** directory that contains many resources 
-that will help you both implement CloudInquisitor and contribute 
-to the project.
+This project has a **docs** directory that contains many resources that will help you implement Cloud Inquisitor and contribute to the project.
 
 * `Quickstart <docs/quickstart.rst>`_
 * `Upgrading <docs/upgrade.rst>`_
 * `Development Build <docs/develop.rst>`_
 * `Changelog <docs/changelog.rst>`_
-* `Source Code <https://www.github.com/riotgames/CloudInquisitor>`_
+* `Source Code <https://www.github.com/riotgames/cloud-inquisitor>`_
 * `Contribution Guidelines <docs/contributing.rst>`_
 * `Contributors <docs/contributors.rst>`_
-* `Roadmap <docs/roadmap.rst>`_
+* `Roadmap <../../milestones>`_
 * `Issue Tracker <../../issues>`_
-* `Slack Chat Room <https://cinq.slack.com>`_
+* `Slack Chat Room <https://cloud-inquisitor.slack.com>`_

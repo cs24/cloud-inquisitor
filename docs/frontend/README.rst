@@ -1,6 +1,6 @@
-************************
-CloudInquisitor Frontend
-************************
+*************************
+Cloud Inquisitor Frontend
+*************************
 
 This project provides the web frontend for the ``Cloud Inquisitor`` system, and is built using `AngularJS <https://angular.io/>`_ and
 angularjs-material (Google Material Design) elements, with a few jQuery based libraries as well.
@@ -17,8 +17,8 @@ and then run the following commands:
 ::
 
     bash
-    cd $CLOUDINQUISITOR-REPO/frontend
+    cd $Cloud-Inquisitor-REPO/frontend
     npm install
     node_modules/.bin/gulp
 
-This will result in production-ready (minified) HTML and Javascript code being available in the ``dist`` folder.
+This will result in production-ready (minified) HTML and Javascript code which can be found in the ``dist`` folder.
