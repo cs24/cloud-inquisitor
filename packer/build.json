@@ -86,7 +86,7 @@
 
             },
             "run_tags": {
-                "Owner":            "yourteam@yourcompany.com",
+                "Owner":            "security@riotgames.com",
                 "Accounting":       "yourteam.accounting.tag",
                 "Name":             "Cloud Inquisitor Packer Instance",
                 "GitBranch":        "{{user `git_branch`}}"
