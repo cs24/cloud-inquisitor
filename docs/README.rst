@@ -15,6 +15,6 @@ This directory has several resources that will help you implement Cloud Inquisit
 * `Source Code <https://www.github.com/riotgames/cloud-inquisitor>`_
 * `Contribution Guidelines <contributing.rst>`_
 * `Contributors <contributors.rst>`_
-* `Roadmap <roadmap.rst>`_
+* `Roadmap <../../milestones>`_
 * `Issue Tracker <../../../issues>`_
 * `Slack Chat Room <https://cinq.slack.com>`_
