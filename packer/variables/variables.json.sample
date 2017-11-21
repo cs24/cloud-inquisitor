@@ -6,11 +6,11 @@
     "ec2_region":                   "us-west-2",
     "ec2_ssh_username":             "ubuntu",
     "ec2_security_groups":          "sg-b5699dc8",
-    "ec2_public_ip_enable":	        "False",
-    "app_kms_account_name":	        "my_account_name",
+    "ec2_public_ip_enable":         "False",
+    "app_kms_account_name":         "my_account_name",
     "app_use_user_data":            "False",
     "app_apt_upgrade":              "True",
     "app_log_level":                "INFO",
     "app_db_uri":                   "mysql://cinq:changeme@localhost:3306/cinq",
-    "git_branch":		            "master"
+    "git_branch":                   "master"
 }
