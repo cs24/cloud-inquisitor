@@ -2,6 +2,8 @@
 Documentation
 *************
 
+.. image:: images/cloud-inquisitor_logo.png
+
 ========
 Contents
 ========
