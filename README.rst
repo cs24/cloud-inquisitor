@@ -35,7 +35,7 @@ Please see the `Resources`_ section below for further information.
 Contact
 =======
 
-Any questions or comments regarding this project can be made via the project's `Slack Chat Room <https://cinq.slack.com>`_.
+Any questions or comments regarding this project can be made via the project's `Slack Chat Room <https://cloud-inquisitor.slack.com>`_.
 
 =========
 Resources
