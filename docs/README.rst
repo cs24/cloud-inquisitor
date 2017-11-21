@@ -10,7 +10,7 @@ This directory has several resources that will help you implement Cloud Inquisit
 
 * `Quickstart <quickstart.rst>`_
 * `Upgrading <upgrade.rst>`_
-* `Development Build <develop.rst>`_
+* `Development Build <local-development/README.rst>`_
 * `Changelog <changelog.rst>`_
 * `Source Code <https://www.github.com/riotgames/cloud-inquisitor>`_
 * `Contribution Guidelines <contributing.rst>`_
