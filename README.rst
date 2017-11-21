@@ -52,4 +52,4 @@ This project has a **docs** directory that contains many resources that will hel
 * `Contributors <docs/contributors.rst>`_
 * `Roadmap <../../milestones>`_
 * `Issue Tracker <../../issues>`_
-* `Slack Chat Room <https://cinq.slack.com>`_
+* `Slack Chat Room <https://cloud-inquisitor.slack.com>`_
