@@ -9,6 +9,7 @@ setenv.sh
 *.pid
 .vagrant
 logs
+!frontend/gulp/*
 !frontend/source/javascript/components/logs
 run.py
 */settings/*.py

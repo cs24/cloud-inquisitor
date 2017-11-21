@@ -3,7 +3,6 @@
         "aws_access_key":                           "{{env `AWS_ACCESS_KEY_ID`}}",
         "aws_secret_key":                           "{{env `AWS_SECRET_ACCESS_KEY`}}",
         "aws_session_token":                        "{{env `AWS_SESSION_TOKEN`}}",
-
         "ec2_vpc_id":                               "vpc-4a254c2f",
         "ec2_subnet_id":                            "subnet-e7307482",
         "ec2_source_ami":                           "ami-96d568f6",
@@ -11,26 +10,22 @@
         "ec2_region":                               "us-west-2",
         "ec2_ssh_username":                         "ubuntu",
         "ec2_security_groups":                      "sg-0c0aa368,sg-de1db4ba",
-
         "vbox_base_ova_path":                       "../../../ubuntu_base_1604.ova",
         "vbox_ssh_username":                        "vagrant",
         "vbox_ssh_password":                        "vagrant",
-
         "git_branch":                               null,
         "tmp_base":                                 "/tmp/packer",
         "install_base":                             "/opt",
         "pyenv_dir":                                "pyenv",
         "frontend_dir":                             "cinq-frontend",
         "backend_dir":                              "cinq-backend",
-
         "app_apt_upgrade":                          "True",
         "app_debug":                                "False",
-
         "app_db_uri":                               "UNUSED",
         "app_ssl_enabled":                          "True",
         "app_ssl_cert_data":                        "",
         "app_ssl_key_data":                         "",
-        "app_use_user_data":                        "True",
+        "app_use_user_data":                        null,
         "app_kms_account_name":                     null,
         "app_user_data_url":                        "http://169.254.169.254/latest/user-data",
         "app_aws_api_access_key":                   "",
@@ -49,19 +44,20 @@
             "region":               "{{user `ec2_region`}}",
             "instance_type":        "{{user `ec2_instance_type`}}",
             "source_ami":           "{{user `ec2_source_ami`}}",
+            "associate_public_ip_address":  "{{user `ec2_public_ip_enable`}}",
             "ssh_username":         "{{user `ec2_ssh_username`}}",
             "ami_name":             "cloud-inquisitor @{{user `git_branch`}} {{isotime \"2006-01-02 15-04-05\"}}",
             "security_group_ids":   "{{user `ec2_security_groups`}}",
             "tags": {
-                "Owner":            "platformsecurity@riotgames.com",
-                "Accounting":       "central.infosec.inquisitor",
+                "Owner":            "security@riotgames.com",
+                "Accounting":       "youreteam.accounting.tag",
                 "Name":             "Cloud Inquisitor System Image",
                 "SourceAmi":        "{{user `ec2_source_ami`}}",
                 "GitBranch":        "{{user `git_branch`}}"
             },
             "run_tags": {
-                "Owner":            "platformsecurity@riotgames.com",
-                "Accounting":       "central.infosec.inquisitor",
+                "Owner":            "security@riotgames.com",
+                "Accounting":       "yourteam.accounting.tag",
                 "Name":             "Cloud Inquisitor Packer Instance",
                 "GitBranch":        "{{user `git_branch`}}"
             }
@@ -77,20 +73,21 @@
             "region":               "{{user `ec2_region`}}",
             "instance_type":        "{{user `ec2_instance_type`}}",
             "source_ami":           "{{user `ec2_source_ami`}}",
+            "associate_public_ip_address":  "{{user `ec2_public_ip_enable`}}",
             "ssh_username":         "{{user `ec2_ssh_username`}}",
             "ami_name":             "cinq test @{{user `git_branch`}} {{isotime \"2006-01-02 15-04-05\"}}",
             "security_group_ids":   "{{user `ec2_security_groups`}}",
             "tags": {
-                "Owner":            "platformsecurity@riotgames.com",
-                "Accounting":       "central.infosec.inquisitor",
+                "Owner":            "security@riotgames.com",
+                "Accounting":       "yourteam.accounting.tag",
                 "Name":             "Cloud Inquisitor System Image With Tests",
                 "SourceAmi":        "{{user `ec2_source_ami`}}",
                 "GitBranch":        "{{user `git_branch`}}"
 
             },
             "run_tags": {
-                "Owner":            "platformsecurity@riotgames.com",
-                "Accounting":       "central.infosec.inquisitor",
+                "Owner":            "security@riotgames.com",
+                "Accounting":       "yourteam.accounting.tag",
                 "Name":             "Cloud Inquisitor Packer Instance",
                 "GitBranch":        "{{user `git_branch`}}"
             }

@@ -1,12 +1,16 @@
 {
-    "ec2_vpc_id":                   "vpc-4a254c2f",
-    "ec2_subnet_id":                "subnet-e7307482",
-    "ec2_source_ami":               "ami-96d568f6",
-    "ec2_instance_type":            "m3.large",
+    "ec2_vpc_id":                   "vpc-e9cf218f",
+    "ec2_subnet_id":                "subnet-ed53be8b",
+    "ec2_source_ami":               "ami-0a00ce72",
+    "ec2_instance_type":            "m4.large",
     "ec2_region":                   "us-west-2",
     "ec2_ssh_username":             "ubuntu",
-
+    "ec2_security_groups":          "sg-b5699dc8",
+    "ec2_public_ip_enable":         "False",
+    "app_kms_account_name":         "my_account_name",
+    "app_use_user_data":            "False",
     "app_apt_upgrade":              "True",
     "app_log_level":                "INFO",
-    "app_db_uri":                   "mysql://awsaudits:changeme@localhost:3306/awsaudits"
+    "app_db_uri":                   "mysql://cinq:changeme@localhost:3306/cinq",
+    "git_branch":                   "master"
 }

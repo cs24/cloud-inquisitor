@@ -30,7 +30,7 @@ install_backend() {
 
     echo "Installing backend"
     mkdir -p ${APP_BACKEND_BASE_PATH}
-    cp -a ${APP_TEMP_BASE}/aws-audits-backend/* ${APP_BACKEND_BASE_PATH}
+    cp -a ${APP_TEMP_BASE}/cinq-backend/* ${APP_BACKEND_BASE_PATH}
 
     # setup.py to prepare for dynamic module reloading.
     # TODO: Remove PBR_VERSION once we are building CInq as a package
@@ -48,7 +48,7 @@ install_backend() {
 }
 
 install_frontend() {
-    FRONTEND_TEMP_BASE=${APP_TEMP_BASE}/aws-audits-frontend
+    FRONTEND_TEMP_BASE=${APP_TEMP_BASE}/cinq-frontend
     pushd ${FRONTEND_TEMP_BASE}
         # Delete node_modules and dist if they exist to prevent
         # bad versions being used
