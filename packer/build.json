@@ -49,19 +49,20 @@
             "region":               "{{user `ec2_region`}}",
             "instance_type":        "{{user `ec2_instance_type`}}",
             "source_ami":           "{{user `ec2_source_ami`}}",
+	    "associate_public_ip_address":  "{{user `ec2_public_ip_enable`}}",
             "ssh_username":         "{{user `ec2_ssh_username`}}",
             "ami_name":             "cloud-inquisitor @{{user `git_branch`}} {{isotime \"2006-01-02 15-04-05\"}}",
             "security_group_ids":   "{{user `ec2_security_groups`}}",
             "tags": {
-                "Owner":            "platformsecurity@riotgames.com",
-                "Accounting":       "central.infosec.inquisitor",
+                "Owner":            "yourteam@yourcompany.com",
+                "Accounting":       "youreteam.accounting.tag",
                 "Name":             "Cloud Inquisitor System Image",
                 "SourceAmi":        "{{user `ec2_source_ami`}}",
                 "GitBranch":        "{{user `git_branch`}}"
             },
             "run_tags": {
-                "Owner":            "platformsecurity@riotgames.com",
-                "Accounting":       "central.infosec.inquisitor",
+                "Owner":            "yourteam@yourcompany.com",
+                "Accounting":       "youreteam.accounting.tag",
                 "Name":             "Cloud Inquisitor Packer Instance",
                 "GitBranch":        "{{user `git_branch`}}"
             }
@@ -77,6 +78,7 @@
             "region":               "{{user `ec2_region`}}",
             "instance_type":        "{{user `ec2_instance_type`}}",
             "source_ami":           "{{user `ec2_source_ami`}}",
+	    "associate_public_ip_address":  "{{user `ec2_public_ip_enable`}}",
             "ssh_username":         "{{user `ec2_ssh_username`}}",
             "ami_name":             "cinq test @{{user `git_branch`}} {{isotime \"2006-01-02 15-04-05\"}}",
             "security_group_ids":   "{{user `ec2_security_groups`}}",
@@ -89,8 +91,8 @@
 
             },
             "run_tags": {
-                "Owner":            "platformsecurity@riotgames.com",
-                "Accounting":       "central.infosec.inquisitor",
+                "Owner":            "yourteam@yourcompany.com",
+                "Accounting":       "yourteam.accounting.tag",
                 "Name":             "Cloud Inquisitor Packer Instance",
                 "GitBranch":        "{{user `git_branch`}}"
             }
