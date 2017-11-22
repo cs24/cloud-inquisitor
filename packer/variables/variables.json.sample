@@ -12,5 +12,8 @@
     "app_apt_upgrade":              "True",
     "app_log_level":                "INFO",
     "app_db_uri":                   "mysql://cinq:changeme@localhost:3306/cinq",
+    "app_db_user":                  "cinq",
+    "app_db_pw":                    "changeme",
+    "app_db_setup_local":           "True",
     "git_branch":                   "master"
 }
