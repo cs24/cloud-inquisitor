@@ -146,8 +146,8 @@ so it can use AssumeRole in the target accounts it is auditing. Below is a sampl
                 "*"
             ]
         }
-    ]
-}
+      ]
+    }
 
 * (Optional) If you intend to audit resources that are NOT in the account you are running cinq from, you need to setup a trust role for EACH target account:
 
