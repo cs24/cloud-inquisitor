@@ -202,7 +202,7 @@
             "execute_command": "if [ \"{{ build_name }}\" == \"ami-with-tests\" ]; then chmod +x {{ .Path }}; {{ .Vars }} sudo -EH {{ .Path }}; else exit 0; fi",
             "inline": [
                 "echo \"Database setup...\"",
-                "sudo mysql -u root -e \"create database awsaudits; grant ALL on awsaudits.* to 'awsaudits'@'localhost' identified by 'changeme';\"",
+                "sudo mysql -u root -e \"create database cinq; grant ALL on cinq* to 'cinq'@'localhost' identified by 'changeme';\"",
                 "export INQUISITOR_SETTINGS=/opt/cinq-backend/settings/production.py",
                 "cd /opt/cinq-backend",
                 "sudo -u www-data -E python3 manage.py db upgrade",
