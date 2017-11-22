@@ -25,7 +25,7 @@ Build Requirements
 
 * `Packer <https://packer.io/downloads.html>`_ > v0.12.3
 
-* AWS Credentials - API Keys or an AWS instance role with `appropriate permissions <https://www.packer.io/docs/builders/amazon.html>`_.
+* `AWS Credentials <https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html>`_ - API Keys or an AWS instance role with `appropriate permissions <https://www.packer.io/docs/builders/amazon.html>`_.
 
 ^^^^^^^^^^^^^
 1. Setting Up
