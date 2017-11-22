@@ -15,6 +15,10 @@ Cloud Inquisitor improves the security posture of an AWS footprint through:
 * verifying security services such as `Cloudtrail <https://aws.amazon.com/cloudtrail/>`_ and `VPC Flowlogs <https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html>`_.
 * managing `IAM policies <https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html>`_ across multiple accounts.
 
+============
+Version
+============
+
 `Cloud Inquisitor Latest <../../releases/latest>`_
 
 ============
