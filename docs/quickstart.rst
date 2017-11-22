@@ -34,150 +34,210 @@ Build Requirements
 * Export your AWS key credentials into the local terminal that you intend to execute packer from. You can also add them to the variables file but this isn't recommeded
 
 ::
-    ff
+    export AWS_ACCESS_KEY_ID=AKIAxxxxxxxxxxxxxxxxx
+    export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxx
 
+* Clone the cinq repo:
 
-------------------
-Building an Image
-------------------
-
-All the files required for building images can be found in the `packer </packer>`_ folder. There are three folders (`files </packer/files>`_, `scripts </packer/scripts>`_, and `variables </packer/variables>`_) and the main packer build script (`build.json </packer/build.json>`_).
-
-------------------
-Files Directory
-------------------
 ::
+    git clone https://github.com/RiotGames/cloud-inquistor
 
-    files/
-    ├── backend-settings.py
-    ├── nginx-nossl.conf
-    ├── nginx-ssl.conf
-    └── supervisor.conf
 
-* `backend-settings.py </packer/files/backend-settings.py>`_ - template for the backend application configuration.
+* In the packer directory cp variables/variables.json.example to your own variables file:
 
-    * Install location: ``BACKEND_INSTALL_BASE/settings/production.py``
-
-* `nginx-nossl.conf </packer/files/nginx-nossl.conf>`_ - the configuration files used for nginx, if SSL has not been enabled.
-
-    * Install location: ``/etc/nginx/sites-available/cloudinquisitor.conf``
-
-* `nginx-ssl.conf </packer/files/nginx-ssl.conf>`_ - the configuration files used for nginx, if SSL has been enabled.
-
-    * Install location: ``/etc/nginx/sites-available/cloudinquisitor.conf``
-
-* `supervisor.conf` - template for supervisor configuration
-
-    * Install location: ``/etc/supervisor/conf.d/cloudinquisitor.conf``
-
------------------
-Scripts Directory
------------------
 ::
+    cp variables/variables.json.example variables/mycinqenv.json
 
-    scripts/
-    └── install.sh
+* Edit your json file and provide your parameters as follows
 
-* `install.sh </packer/scripts/install.sh>`_ - the main build script, which performs the actual installation.
+The example provides the most basic of user variables needed to configure cinq. A full list of parameters is available in the build.json file. For detailed
+build information please see <here>.
 
--------------------
-Variables Directory
--------------------
+NOTE : Many of the variables are specific to the Packer BUILD environment and not relevant to the final deployment of cinq. Items in BOLD must be changed to fit your environment.
 
-This folder contains an example of the JSON file required to pass in variables for the installer script. Variables in Packer can either be loaded from a file like the `variables.json.sample </packer/variables/variables.json.sample>`_ or they can be passed in through the command line when running packer or a mix between file and command line arguments. Any arguments passed in through the command line will override both the variables file passed in as well as default values in the main packer build script.
+* The easiest way to get cinq up and running is to ensure app_db_setup_local is set to True. The will install a local mysql-server on the instance
+itself.
+
 ::
+{
+    ** "ec2_vpc_id":                   "vpc-e9cf218f",       (This is the VPC for the packer BUILD instance) **
+    ** "ec2_subnet_id":                "subnet-ed53be8b",    (This is the subnet for the packer BUILD instance) **
+    ** "ec2_source_ami":               "ami-0a00ce72",       (This is an Ubuntu 16 AMI but you can use your own custom AMI ID) **
+    "ec2_instance_type":            "m4.large",
+    "ec2_region":                   "us-west-2",
+    "ec2_ssh_username":             "ubuntu",
+    ** "ec2_security_groups":          "sg-b5699dc8",        (Ensure that you have SSH open from your workstation or packer build will fail) **
+    "ec2_public_ip_enable":         "False",              (If you don't have VPN or DirectConnect to your VPC, set this to True)
+    "app_kms_account_name":         "my_account_name",    (Optional: for using KMS encrypted userdata for your DB URI)
+    "app_use_user_data":            "False",              (Set to True if you want to use KMS encrypted userdata for your DB URI)
+    "app_apt_upgrade":              "True",
+    "app_log_level":                "INFO",
+    ** "app_db_uri":                   "mysql://cinq:changeme@localhost:3306/cinq",  (This points to your database (See Notes)) **
+    ** "app_db_user":                  "cinq", **
+    ** "app_db_pw":                    "changeme", **
+    ** "app_db_setup_local":           "True",               (Easiest way to get cinq running, set to False if you want to use external DB) **
+    "git_branch":                   "master"
+}
 
-    variables/
-    └── variables.json.sample
-
-----------
-build.json
-----------
-
-This is the main build definition for Packer which is where we define what and how to build.
-
------------------
-Building an Image
------------------
-
-Once you have all the variables set up in the file you're passing in, you just need to run the following command to build a new version of Cloud Inquisitor (either AMI or OVA).::
-
-    bash packer build -only <builder> -var-file variables/production-variables.json build.json
-
-See `build.json </packer/build.json>`_ for build target names such as *ami*, *local*, or  *ami-with-tests*
-
-**Please note** that If you do not supply the `-only` argument, all builders will be used. 
+* Save this file.
 
 --------------------
-Overriding Variables
+2. Building an Image
 --------------------
 
-You can override configuration variables from the command line. The order of ``-var`` parameters is important: the last takes priority. For example, if you want to override the database password while building an Amazon AMI you would run the following command: ::
+All the files required to build the image are in the packer subdirectory
 
-    bash packer build -only ami -var-file variables/production.json -var 'db_password=verysecretpassword' build.json
+* Execute the following command from the packer directory in the cinq repo to have packer build your custom AMI.
 
----------
-Variables
----------
-
-This section goes over all the available settings to tweak as well as their default values.
-**N.B.** :: These values can and should all be modified in your production _variables_ file, you should not need to edit any values in ``build.json``
-
-^^^^^^^^^^^^^^^
-Packer Settings
-^^^^^^^^^^^^^^^
-
-* ``aws_access_key`` - Access Key ID to use. Default: `AWS_ACCESS_KEY_ID` environment variable
-* ``aws_secret_key`` - Secret Key ID to use. Default: `AWS_SECRET_ACCESS_KEY` environment variable
-* ``ec2_vpc_id`` - ID of the VPC to launch the build instance into or default VPC if left blank. Default: `vpc-4a254c2f`
-* ``ec2_subnet_id`` - ID of the subnet to launch the build instance into or default subnet if left blank. Default: `subnet-e7307482`
-* ``ec2_source_ami`` - AMI to use as base image. Default: `ami-34d32354`
-* ``ec2_region`` - EC2 Region to build AMI in. Default: `us-west-2`
-* ``ec2_ssh_username`` - Username to SSH as for AMI builds. Default: `ubuntu`
-* ``ec2_security_groups`` - Comma-separated list of EC2 Security Groups to apply to the instance on launch. Default: `sg-0c0aa368,sg-de1db4ba`
-* ``ec2_instance_profile`` - Name of an IAM Instance profile to launch the instance with. Default: `CinqInstanceProfile`
-
-* ``vbox_base_ova_path`` - Path to the base OVA / OVF image for VirtualBox builds. Default: `../../../ubuntu_base.ova`
-* ``vbox_ssh_username`` - User to SSH as for Virtual Box builds. Default: `vagrant`
-* ``vbox_ssh_password`` - Password for Virtual Box SSH access. Default: `vagrant`
-
-^^^^^^^^^^^^^^^^^^
-Installer Settings
-^^^^^^^^^^^^^^^^^^
-
-* ``tmp_base`` - Base folder for temporary files during installation, will be created if missing. Must be writable by the default ssh user. Default: `/tmp/packer`
-* ``install_base`` - Base root folder to install to. Default: `/opt`
-* ``frontend_dir`` - Subdirectory of `install_base` for frontend code. Default: `cinq-frontend`
-* ``backend_dir`` - Subdirectory of `install_base` for backend code. Default: `cinq-backend`
-* ``app_apt_upgrade`` - Run `apt-get upgrade` as part of the build process. Default: `True`
-
-^^^^^^^^^^^^^^^
-Common Settings
-^^^^^^^^^^^^^^^
-
-* ``app_debug`` - Run Flask in debug mode. Default: `False`
-
-^^^^^^^^^^^^^^^^^
-Frontend Settings
-^^^^^^^^^^^^^^^^^
-
-* ``app_frontend_api_path`` - Absolute path for API location. Default: `/api/v1`
-* ``app_frontend_login_url`` - Absolute path for SAML Login redirect URL. Default: `/saml/login`
-
-^^^^^^^^^^^^^^^^
-Backend Settings
-^^^^^^^^^^^^^^^^
-
-* ``app_db_uri`` - **IMPORTANT:** Database connection URI. Example: ``mysql://cinq:changeme@localhost:3306/cinq``
-* ``app_api_host`` - Hostname of the API backend. Default: ``127.0.0.1``
-* ``app_api_port`` - Port of the API backend. Default: ``5000``
-* ``app_api_workers`` - Number of worker threads for API backend. Default: ``10``
-* ``app_ssl_enabled`` - Enable SSL on frontend and backend. Default: ``True``
-* ``app_ssl_cert_data`` - Base64 encoded SSL public key data, used if not using self-signed certificates. Default: ``None``
-* ``app_ssl_key_data`` - Base64 encoded SSL private key data, used if not using self-signed certificates. Default: ``None``
+::
+    # packer build -only ami -var-file variables/mycinqenv.json build.json
 
 
-===
-FYI
-===
-The vast majority of these settings should be left at their default values. Some items have been marked as **IMPORTANT**, meaning that the default values should **never** be used for anything other than local development work at best but ideally should never be used at all. See `here </packer/variables/variables.json.sample>`_ for an example JSON variables file.
+Assuming your variables are correct and you have the proper AWS permissions, packer should create an AMI. If steps fail, try executing pakcer
+with the -debug flag and step through the build process to identify where it is breaking.
+
+
+::
+==> ami: Waiting for the instance to stop...
+==> ami: Creating the AMI: cloud-inquisitor @master 2017-11-22 18-22-37
+**    ami: AMI: ami-a57ba6dd **
+==> ami: Waiting for AMI to become ready...
+==> ami: Adding tags to AMI (ami-a57ba6dd)...
+==> ami: Tagging snapshot: snap-0155cc17def79c4c4
+==> ami: Creating AMI tags
+    ami: Adding tag: "Accounting": "yourteam.accounting.tag"
+    ami: Adding tag: "Name": "Cloud Inquisitor System Image"
+    ami: Adding tag: "SourceAmi": "ami-0a00ce72"
+    ami: Adding tag: "GitBranch": "master"
+    ami: Adding tag: "Owner": "teamname@yourcompany.com"
+==> ami: Creating snapshot tags
+==> ami: Terminating the source AWS instance...
+==> ami: Cleaning up any extra volumes...
+==> ami: No volumes to clean up, skipping
+==> ami: Deleting temporary keypair...
+Build 'ami' finished.
+
+
+
+---------------------
+3. Launching your AMI
+---------------------
+
+Cinq is designed to be able to operate on multiple AWS accounts. To ensure this is possible you'll need to create an Instance Profile
+so it can use AssumeRole in the target accounts it is auditing. Below is a sample of the instance profile you should create
+
+* Create an IAM Role and bind the following policy to it
+
+::
+    {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "CinqInstancePolicy",
+            "Effect": "Allow",
+            "Action": [
+                "ses:SendEmail",
+                "ses:SendRawEmail",
+                "sts:AssumeRole",
+                "sqs:SendMessage*",
+                "sqs:DeleteMessage*",
+                "sqs:GetQueue*",
+                "sqs:ListQueues",
+                "sqs:PurgeQueue",
+                "sqs:ReceiveMessage",
+                "cloudwatch:PutMetricData",
+                "cloudwatch:GetMetricStatistics",
+                "cloudwatch:ListMetrics",
+                "ec2:DescribeTags"
+            ],
+            "Resource": [
+                "*"
+            ]
+        }
+    ]
+}
+
+* (Optional) If you intend to audit resources that are NOT in the account you are running cinq from, you need to setup a trust role for EACH target account:
+
+On the target account, create an IAM role called cinq-audit-role and attach the following policies:
+
+::
+{
+    "Statement": [
+        {
+            "Sid": "",
+            "Effect": "Allow",
+            "Resource": [
+                "*"
+            ],
+            "Action": [
+                "cloudtrail:*",
+                "ec2:CreateTags",
+                "ec2:CreateFlowLogs",
+                "ec2:DeleteTags",
+                "ec2:DeleteVolume",
+                "ec2:StopInstances",
+                "ec2:TerminateInstances",
+                "iam:AttachRolePolicy",
+                "iam:CreatePolicy*",
+                "iam:CreateRole",
+                "iam:DeletePolicy*",
+                "iam:DeleteRolePolicy",
+                "iam:DetachRolePolicy",
+                "iam:PutRolePolicy",
+                "iam:SetDefaultPolicyVersion",
+                "iam:UpdateAssumeRolePolicy",
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:DescribeLogGroups",
+                "logs:DescribeLogStreams",
+                "logs:PutLogEvents",
+                "s3:CreateBucket",
+                "s3:PutBucketPolicy",
+                "sns:CreateTopic",
+                "sns:SetTopicAttributes",
+                "sns:Subscribe",
+                "sqs:Get*",
+                "sqs:List*",
+                "sqs:SetQueueAttributes",
+                "sqs:Get*",
+                "sqs:List*",
+                "sqs:SetQueueAttributes"
+            ]
+        }
+    ],
+    "Version": "2012-10-17"
+}
+
+Trust Policy:
+
+Note: Ensure you have the correct source AWS Account ID (that is running CINQ) and the Instance Profile Name (not the Role name) populated here.
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::<accountid-running-cinq>:role/<instanceprofilename>
+        ],
+        "Service": "ec2.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+
+
+You can now launch this AMI. When launching your AMI ensure the following:
+
+::
+    1. Ensure you use the Instance Profile to launch your cinq instance
+    2. Security Groups should be open on 22/443 to where you intend to access cinq from
+    3. ssh into the instance and grab the admin credentials from $INSTALLDIR/cinq-backend/logs/apiserver.log
+    4. Go to https://<yourinstanceip> and Login
+
+* You can then add Accounts under the Accounts tab
+
