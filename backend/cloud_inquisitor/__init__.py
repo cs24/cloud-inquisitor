@@ -245,7 +245,7 @@ def get_aws_session(account):
     role = sts.assume_role(
         RoleArn='arn:aws:iam::{}:role/{}'.format(
             account.account_number,
-            dbconfig.get('role_name', default='infosec_audits')
+            dbconfig.get('role_name', default='cinq_role')
         ),
         RoleSessionName='inquisitor'
     )

@@ -7,7 +7,7 @@ describe('UI loads, redirects to basic login, and backend is up', function() {
     it('follow redirect and login to backend with bad password', function() {
         browser.get(browser.params.auditsUrl);
 
-        expect(browser.getTitle()).toEqual('AWS Audits');
+        expect(browser.getTitle()).toEqual('Cloud Inquisitor');
         element(by.id('input_0')).sendKeys('admin');
         element(by.id('input_1')).sendKeys('badpassword');
         element(by.css('button[type="submit"]')).click();
