@@ -48,15 +48,13 @@ Build Requirements
 
     cd packer && cp variables/variables.json.sample variables/mycinqenv.json
 
-* Edit your json file and provide your parameters as follows
+* Edit your json file and provide your parameters as per the ``code block`` below.
 
-The example provides the most basic of user variables needed to configure cinq. A full list of parameters is available in the build.json file. For detailed
-build information please see <here>.
+The example file ``variables/variables.json.sample`` provides sample variables needed to configure cinq. A full list of parameters is available in the build.json file. For detailed build information please see <here>.
 
-NOTE : Many of the variables are specific to the Packer BUILD environment and not relevant to the final deployment of cinq. Items in BOLD must be changed to fit your environment.
+NOTE : You will need to change some of these items as they are environnment-specific.
 
-* The easiest way to get cinq up and running is to ensure app_db_setup_local is set to True. The will install a local mysql-server on the instance
-itself.::
+* The easiest way to get cinq up and running is to ensure app_db_setup_local is set to True. The will install a local mysql-server on the instance itself.::
 
     {
         "ec2_vpc_id":                   "vpc-e9cf218f",       (This is the VPC for the packer BUILD instance)
