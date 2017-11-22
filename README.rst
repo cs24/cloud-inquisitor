@@ -52,7 +52,7 @@ This project has a **docs** directory that contains many resources that will hel
 
 * `Quickstart <docs/quickstart.rst>`_
 * `Upgrading <docs/upgrade.rst>`_
-* `Development Build <docs/develop.rst>`_
+* `Development Build <docs/local-development/README.rst>`_
 * `Changelog <docs/changelog.rst>`_
 * `Source Code <https://www.github.com/riotgames/cloud-inquisitor>`_
 * `Contribution Guidelines <docs/contributing.rst>`_
