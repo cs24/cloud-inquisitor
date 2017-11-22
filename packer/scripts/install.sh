@@ -101,7 +101,7 @@ function generate_jwt_key() {
 }
 
 generate_self_signed_certs() {
-    CERTINFO="/C=US/ST=CA/O=Riot Games/localityName=Los Angeles/commonName=localhost/organizationalUnitName=Operations/emailAddress=someone@example.com"
+    CERTINFO="/C=US/ST=CA/O=Your Company/localityName=Your City/commonName=localhost/organizationalUnitName=Operations/emailAddress=someone@example.com"
     openssl req -x509 -subj "$CERTINFO" -days 3650 -newkey rsa:2048 -nodes \
         -keyout ${APP_BACKEND_BASE_PATH}/settings/ssl/cinq-frontend.key \
         -out ${APP_BACKEND_BASE_PATH}/settings/ssl/cinq-frontend.crt

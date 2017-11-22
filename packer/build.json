@@ -10,15 +10,14 @@
         "ec2_region":                               "us-west-2",
         "ec2_ssh_username":                         "ubuntu",
         "ec2_security_groups":                      "sg-0c0aa368,sg-de1db4ba",
-        "vbox_base_ova_path":                       "../../../ubuntu_base_1604.ova",
-        "vbox_ssh_username":                        "vagrant",
-        "vbox_ssh_password":                        "vagrant",
+
         "git_branch":                               null,
         "tmp_base":                                 "/tmp/packer",
         "install_base":                             "/opt",
         "pyenv_dir":                                "pyenv",
         "frontend_dir":                             "cinq-frontend",
         "backend_dir":                              "cinq-backend",
+
         "app_apt_upgrade":                          "True",
         "app_debug":                                "False",
         "app_db_uri":                               "UNUSED",
@@ -64,19 +63,6 @@
                 "Name":             "Cloud Inquisitor Packer Instance",
                 "GitBranch":        "{{user `git_branch`}}"
             }
-        },
-        {
-            "type":             "virtualbox-ovf",
-            "name":             "local",
-            "format":           "ova",
-            "source_path":      "{{user `vbox_base_ova_path`}}",
-            "ssh_username":     "{{user `vbox_ssh_username`}}",
-            "ssh_password":     "{{user `vbox_ssh_password`}}",
-            "ssh_wait_timeout": "1m",
-            "shutdown_command": "sudo shutdown -h now",
-            "vboxmanage":       [
-                ["modifyvm", "{{.Name}}", "--nictype1", "virtio"]
-            ]
         }
     ],
     "provisioners": [
@@ -150,25 +136,6 @@
         },
         {
             "type": "shell",
-            "execute_command": "if [ \"{{ build_name }}\" == \"ami-with-tests\" ]; then chmod +x {{ .Path }}; {{ .Vars }} sudo -EH {{ .Path }}; else exit 0; fi",
-            "inline": [
-                "echo \"Database setup...\"",
-                "sudo mysql -u root -e \"create database cinq; grant ALL on cinq* to 'cinq'@'localhost' identified by 'changeme';\"",
-                "export INQUISITOR_SETTINGS=/opt/cinq-backend/settings/production.py",
-                "cd /opt/cinq-backend",
-                "sudo -u www-data -E python3 manage.py db upgrade",
-                "echo ''",
-                "echo \"Ignore line above about 'Failed loading configuration from database.' It was buffered before creating DB\"",
-                "sudo -u www-data -E python3 manage.py setup --headless"
-            ]
-        },
-        {
-            "type": "shell",
-            "execute_command": "if [ \"{{ build_name }}\" == \"ami-with-tests\" ]; then chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}; else exit 0; fi",
-            "inline": [
-                "sudo systemctl restart supervisor.service",
-                "cd /tmp/packer/cinq-frontend/tests",
-                "bash ./test-e2e.sh"
             "execute_command": "if [ \"{{ user `app_db_setup_local` }}\" == \"True\" ]; then chmod +x {{ .Path }}; {{ .Vars }} sudo -EH {{ .Path }}; else exit 0; fi",
             "script": "scripts/setup_db.sh",
             "environment_vars": [
