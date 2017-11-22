@@ -26,7 +26,7 @@ Getting Cloud Inquisitor (cinq) up and running involves the following steps
 Build Requirements
 ------------------
 
-* `Packer <https://packer.io/downloads.html>`_ > v0.12.3
+* `Packer <https://packer.io/downloads.html>`_ > v1.1
 
 * `AWS Credentials <https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html>`_ - API Keys or an AWS instance role with `appropriate permissions <https://www.packer.io/docs/builders/amazon.html>`_.
 
@@ -89,8 +89,7 @@ All the files required to build the image are in the packer subdirectory
     packer build -only ami -var-file variables/mycinqenv.json build.json
 
 
-Assuming your variables are correct and you have the proper AWS permissions, packer should create an AMI. If steps fail, try executing pakcer
-with the -debug flag and step through the build process to identify where it is breaking.::
+Assuming your variables are correct and you have the proper AWS permissions, packer should create an AMI. If steps fail, try executing ``packer`` with the ``-debug`` flag and step through the build process to identify where it is breaking.::
 
     ==> ami: Waiting for the instance to stop...
     ==> ami: Creating the AMI: cloud-inquisitor @master 2017-11-22 18-22-37
