@@ -106,7 +106,7 @@ class Setup(BaseCommand):
                 'options': [
                     ConfigOption('debug', False, 'bool', 'Enable debug mode for flask'),
                     ConfigOption('session_expire_time', 43200, 'int', 'Time in seconds before sessions expire'),
-                    ConfigOption('role_name', 'audit_role', 'string',
+                    ConfigOption('role_name', 'cinq_role', 'string',
                                  'Role name Cloud Inquisitor will use in each account'),
                     ConfigOption('ignored_aws_regions_regexp', '(^cn-|GLOBAL|-gov)', 'string',
                                  'A regular expression used to filter out regions from the AWS static data'),
