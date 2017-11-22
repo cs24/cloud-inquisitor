@@ -50,7 +50,7 @@ Initial Setup
 
 ::
 
-    docker-compose run api bash -c "cd /cloud-inquisitor && source env/bin/activate && python3 manage.py db upgrade && python3 manage.py setup --headless"
+    docker-compose run api bash -c "cd /cloudinquisitor && source env/bin/activate && python3 manage.py db upgrade && python3 manage.py setup --headless"
     docker-compose up -d api
 
 4. Retrieve your admin password:
