@@ -150,7 +150,6 @@
         },
         {
             "type": "shell",
-<<<<<<< HEAD
             "execute_command": "if [ \"{{ build_name }}\" == \"ami-with-tests\" ]; then chmod +x {{ .Path }}; {{ .Vars }} sudo -EH {{ .Path }}; else exit 0; fi",
             "inline": [
                 "echo \"Database setup...\"",
@@ -170,7 +169,6 @@
                 "sudo systemctl restart supervisor.service",
                 "cd /tmp/packer/cinq-frontend/tests",
                 "bash ./test-e2e.sh"
-=======
             "execute_command": "if [ \"{{ user `app_db_setup_local` }}\" == \"True\" ]; then chmod +x {{ .Path }}; {{ .Vars }} sudo -EH {{ .Path }}; else exit 0; fi",
             "script": "scripts/setup_db.sh",
             "environment_vars": [
@@ -178,7 +176,6 @@
                 "APP_DB_USER={{user `app_db_user`}}",
                 "APP_DB_PW={{user `app_db_pw`}}",
                 "APP_PYENV_PATH={{user `install_base`}}/{{user `pyenv_dir`}}"
->>>>>>> 069a353110d746d5926e0c513b144b7f4e7e5401
             ]
         },
         {
