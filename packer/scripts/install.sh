@@ -140,14 +140,6 @@ configure_supervisor() {
     fi
 }
 
-create_ec2_regions() {
-    REG_FILE=${APP_BACKEND_BASE_PATH}/settings/regions.json
-    if [ ! -f $REG_FILE ]; then
-        echo "[ ]" > $REG_FILE
-    fi
-    #(cd ${APP_BACKEND_BASE_PATH} && AWS_AUDIT_SETTINGS=${APP_BACKEND_BASE_PATH}/settings/production.py python manage.py update_regions)
-}
-
 cd ${APP_TEMP_BASE}
 
 validate_environment
@@ -159,4 +151,3 @@ generate_jwt_key
 configure_application
 configure_supervisor
 configure_nginx
-#create_ec2_regions
