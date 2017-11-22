@@ -16,8 +16,8 @@ let buildlock = lock();
 // Task to do development build, no JS minification here
 gulp.task('build.dev', buildlock.cb(cb => {
     notifier.notify({
-        title: 'AWS Audits',
-        message: 'AWS Audits Build started',
+        title: 'Cloud Inquisitor',
+        message: 'Cloud Inquisitor Build started',
         timeout: 3
     });
 
@@ -33,7 +33,7 @@ gulp.task('build.dev', buildlock.cb(cb => {
         ],
         () => {
             notifier.notify({
-                title: 'AWS Audits',
+                title: 'Cloud Inquisitor',
                 message: 'Build complete',
                 timeout: 3
             });
@@ -45,8 +45,8 @@ gulp.task('build.dev', buildlock.cb(cb => {
 // Build production version of code, minified JS, CSS and HTML
 gulp.task('build.prod', buildlock.cb(cb => {
     notifier.notify({
-        title: 'AWS Audits',
-        message: 'AWS Audits Build started',
+        title: 'Cloud Inquisitor',
+        message: 'Cloud Inquisitor Build started',
         timeout: 3
     });
 
@@ -62,7 +62,7 @@ gulp.task('build.prod', buildlock.cb(cb => {
         ],
         () => {
             notifier.notify({
-                title: 'AWS Audits',
+                title: 'Cloud Inquisitor',
                 message: 'Build complete',
                 timeout: 3
             });

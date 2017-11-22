@@ -88,7 +88,7 @@ This is the main build definition for Packer which is where we define what and h
 Building an Image
 -----------------
 
-Once you have all the variables set up in the file you're passing in, you just need to run the following command to build a new version of AWS Audits (either AMI or OVA).::
+Once you have all the variables set up in the file you're passing in, you just need to run the following command to build a new version of Cloud Inquisitor (either AMI or OVA).::
 
     bash packer build -only <builder> -var-file variables/production-variables.json build.json
 

@@ -38,8 +38,8 @@ Auditors are plugins which will alert and potentially take action based on data 
 Cloudtrail
 ----------
 
-The CloudTrail auditor will ensure that CloudTrail has been enabled for all accounts configured in the
-Audits system. The system will automatically create an S3 bucket and SNS topics for log delivery notifications.
+The CloudTrail auditor will ensure that CloudTrail has been enabled for all accounts configured in the system.
+The system will automatically create an S3 bucket and SNS topics for log delivery notifications.
 However, you must ensure that the proper access has been granted to the accounts attempting to log to a remote
 S3 bucket. SNS subscriptions will need to be confirmed through an external tool such as the CloudTrail app.
 
@@ -189,7 +189,7 @@ CLI options.
 Accounts
 --------
 
-The accounts command allows updates to the AWS Accounts configured for the Audits system. The CLI allows
+The accounts command allows updates to the AWS Accounts configured for the system. The CLI allows
 you to add, update, and delete accounts from the system.
 
 ^^^^^^^^^^^^^^^^^^^^^
@@ -305,7 +305,7 @@ In addition to the values from the configuration file, you can also override som
 update_regions
 --------------
 
-Updates the local cache of EC2 regions from the AWS API. This command must be run the first time the Audits system is installed on a machine, and should be run whenever there is a change to the available regions from AWS.
+Updates the local cache of EC2 regions from the AWS API. This command must be run the first time the system is installed on a machine, and should be run whenever there is a change to the available regions from AWS.
 
 ::
 
