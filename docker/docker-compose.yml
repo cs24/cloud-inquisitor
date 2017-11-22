@@ -9,8 +9,6 @@ services:
       - MYSQL_DATABASE=cinq
       - MYSQL_USER=${DB_USER:-cinq}
       - MYSQL_PASSWORD=${DB_PASS:-changeme}
-    volumes:
-      - "./database:/var/lib/mysql"
 
   frontend:
     build:
@@ -28,7 +26,7 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - CINQ_SETTINGS=../settings/config.py
+      - INQUISITOR_SETTINGS=/cloudinquisitor/settings/config.py
       - DB_USER=${DB_USER:-cinq}
       - DB_PASS=${DB_PASS:-changeme}
       - DB_URL=${DB_URL:-db}
@@ -41,7 +39,7 @@ services:
       context: ./../
       dockerfile: ./docker/scheduler-Dockerfile
     environment:
-      - CINQ_SETTINGS=../settings/config.py
+      - INQUISITOR_SETTINGS=/cloudinquisitor/settings/config.py
       - DB_USER=${DB_USER:-cinq}
       - DB_PASS=${DB_PASS:-changeme}
       - DB_URL=${DB_URL:-db}
