@@ -4,7 +4,8 @@ Quick Start Guide for Cloud Inquisitor
 
 This tutorial will walk you through installing and configuring ``Cloud Inquisitor``. The tool currently runs on *Amazon Web Services* (AWS) but it has been designed to be platform-independent.
 
-This tutorial assumes you are familiar with AWS & that you have an `AWS`_ account. You'll need to retrieve your ``Access Key ID`` and ``Secret Access Key`` from the web-based console.
+This tutorial assumes you are familiar with AWS & that you have an `AWS`_ account. You'll need to retrieve your ``Access Key ID`` and ``Secret Access Key`` from the web-based console. You can also
+use AWS STS tokens as well.
 
 .. _`AWS`: https://aws.amazon.com/
 
@@ -12,18 +13,29 @@ This tutorial assumes you are familiar with AWS & that you have an `AWS`_ accoun
 Installing Cloud Inquisitor
 ===========================
 
+Getting Cloud Inquisitor (cinq) up and running involves the following steps
+
+1. Configure AWS credentials and variables for cinq.
+2. Packer build your cinq AMI.
+3. Launch your AMI, login, and add accounts!
+
 ------------------
 Build Requirements
 ------------------
 
 * `Packer <https://packer.io/downloads.html>`_ > v0.12.3
 
-    * AWS Credentials - API Keys or an AWS instance role with `appropriate permissions <https://www.packer.io/docs/builders/amazon.html>`_.
+* AWS Credentials - API Keys or an AWS instance role with `appropriate permissions <https://www.packer.io/docs/builders/amazon.html>`_.
 
-* `VirtualBox <https://www.virtualbox.org/>`_ - (for local development)
+------------------
+1. Setting Up
+------------------
 
-    * Vagrant > 1.9.0 for local development
-    * A base Ubuntu image with SSH login *vagrant/vagrant*.
+* Export your AWS key credentials into the local terminal that you intend to execute packer from. You can also add them to the variables file but this isn't recommeded
+
+::
+    ff
+
 
 ------------------
 Building an Image
