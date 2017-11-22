@@ -3,9 +3,9 @@
         "aws_access_key":                           "{{env `AWS_ACCESS_KEY_ID`}}",
         "aws_secret_key":                           "{{env `AWS_SECRET_ACCESS_KEY`}}",
         "aws_session_token":                        "{{env `AWS_SESSION_TOKEN`}}",
-        "ec2_vpc_id":                               "vpc-4a254c2f",
-        "ec2_subnet_id":                            "subnet-e7307482",
-        "ec2_source_ami":                           "ami-96d568f6",
+        "ec2_vpc_id":                               "vpc-xxxxxxxx",
+        "ec2_subnet_id":                            "subnet-xxxxxxxx",
+        "ec2_source_ami":                           "ami-xxxxxxxx",
         "ec2_instance_type":                        "m3.large",
         "ec2_region":                               "us-west-2",
         "ec2_ssh_username":                         "ubuntu",
@@ -22,6 +22,9 @@
         "app_apt_upgrade":                          "True",
         "app_debug":                                "False",
         "app_db_uri":                               "UNUSED",
+        "app_db_setup_local":                       null,
+        "app_db_user":                              null,
+        "app_db_pw":                                null,
         "app_ssl_enabled":                          "True",
         "app_ssl_cert_data":                        "",
         "app_ssl_key_data":                         "",
@@ -49,44 +52,14 @@
             "ami_name":             "cloud-inquisitor @{{user `git_branch`}} {{isotime \"2006-01-02 15-04-05\"}}",
             "security_group_ids":   "{{user `ec2_security_groups`}}",
             "tags": {
-                "Owner":            "security@riotgames.com",
+                "Owner":            "teamname@yourcompany.com",
                 "Accounting":       "youreteam.accounting.tag",
                 "Name":             "Cloud Inquisitor System Image",
                 "SourceAmi":        "{{user `ec2_source_ami`}}",
                 "GitBranch":        "{{user `git_branch`}}"
             },
             "run_tags": {
-                "Owner":            "security@riotgames.com",
-                "Accounting":       "yourteam.accounting.tag",
-                "Name":             "Cloud Inquisitor Packer Instance",
-                "GitBranch":        "{{user `git_branch`}}"
-            }
-        },
-        {
-            "type":                 "amazon-ebs",
-            "name":                 "ami-with-tests",
-            "access_key":           "{{user `aws_access_key`}}",
-            "secret_key":           "{{user `aws_secret_key`}}",
-            "token":                "{{user `aws_session_token`}}",
-            "vpc_id":               "{{user `ec2_vpc_id`}}",
-            "subnet_id":            "{{user `ec2_subnet_id`}}",
-            "region":               "{{user `ec2_region`}}",
-            "instance_type":        "{{user `ec2_instance_type`}}",
-            "source_ami":           "{{user `ec2_source_ami`}}",
-            "associate_public_ip_address":  "{{user `ec2_public_ip_enable`}}",
-            "ssh_username":         "{{user `ec2_ssh_username`}}",
-            "ami_name":             "cinq test @{{user `git_branch`}} {{isotime \"2006-01-02 15-04-05\"}}",
-            "security_group_ids":   "{{user `ec2_security_groups`}}",
-            "tags": {
-                "Owner":            "security@riotgames.com",
-                "Accounting":       "yourteam.accounting.tag",
-                "Name":             "Cloud Inquisitor System Image With Tests",
-                "SourceAmi":        "{{user `ec2_source_ami`}}",
-                "GitBranch":        "{{user `git_branch`}}"
-
-            },
-            "run_tags": {
-                "Owner":            "security@riotgames.com",
+                "Owner":            "teamname@yourcompany.com",
                 "Accounting":       "yourteam.accounting.tag",
                 "Name":             "Cloud Inquisitor Packer Instance",
                 "GitBranch":        "{{user `git_branch`}}"
@@ -107,14 +80,6 @@
         }
     ],
     "provisioners": [
-        {
-            "type": "shell",
-            "execute_command": "if [ \"{{ build_name }}\" == \"ami-with-tests\" ]; then chmod +x {{ .Path }}; {{ .Vars }} sudo -EH {{ .Path }}; else exit 0; fi",
-            "inline": [
-                "echo Running if build_name template variable {{ build_name }} == ami-with-tests.",
-                "echo Environment variable $PACKER_BUILD_NAME is also available."
-            ]
-        },
         {
             "type": "shell",
             "inline": [
@@ -150,11 +115,6 @@
         },
         {
             "type": "shell",
-            "execute_command": "if [ \"{{ build_name }}\" == \"ami-with-tests\" ]; then chmod +x {{ .Path }}; {{ .Vars }} sudo -EH {{ .Path }}; else exit 0; fi",
-            "script": "scripts/install_dev_dependencies.sh"
-        },
-        {
-            "type": "shell",
             "script": "scripts/install.sh",
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} stdbuf -e 0 -o 0 sudo -EH {{ .Path }}",
             "environment_vars": [
@@ -177,15 +137,6 @@
         },
         {
             "type": "shell",
-            "execute_command": "if [ \"{{ build_name }}\" == \"ami-with-tests\" ]; then chmod +x {{ .Path }}; {{ .Vars }} sudo -EH {{ .Path }}; else exit 0; fi",
-            "inline": [
-                "cd {{user `install_base`}}/{{user `backend_dir`}}",
-                "touch coverage.xml",
-                "pytest"
-            ]
-        },
-        {
-            "type": "shell",
             "inline": [
                 "echo \"Touching coverage.xml before attempted download, in case it does not exist.\"",
                 "sudo touch {{user `install_base`}}/{{user `backend_dir`}}/coverage.xml"
@@ -199,6 +150,7 @@
         },
         {
             "type": "shell",
+<<<<<<< HEAD
             "execute_command": "if [ \"{{ build_name }}\" == \"ami-with-tests\" ]; then chmod +x {{ .Path }}; {{ .Vars }} sudo -EH {{ .Path }}; else exit 0; fi",
             "inline": [
                 "echo \"Database setup...\"",
@@ -218,6 +170,15 @@
                 "sudo systemctl restart supervisor.service",
                 "cd /tmp/packer/cinq-frontend/tests",
                 "bash ./test-e2e.sh"
+=======
+            "execute_command": "if [ \"{{ user `app_db_setup_local` }}\" == \"True\" ]; then chmod +x {{ .Path }}; {{ .Vars }} sudo -EH {{ .Path }}; else exit 0; fi",
+            "script": "scripts/setup_db.sh",
+            "environment_vars": [
+                "APP_BACKEND_BASE_PATH={{user `install_base`}}/{{user `backend_dir`}}",
+                "APP_DB_USER={{user `app_db_user`}}",
+                "APP_DB_PW={{user `app_db_pw`}}",
+                "APP_PYENV_PATH={{user `install_base`}}/{{user `pyenv_dir`}}"
+>>>>>>> 069a353110d746d5926e0c513b144b7f4e7e5401
             ]
         },
         {
