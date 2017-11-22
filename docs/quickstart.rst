@@ -27,16 +27,16 @@ Build Requirements
 
 * AWS Credentials - API Keys or an AWS instance role with `appropriate permissions <https://www.packer.io/docs/builders/amazon.html>`_.
 
-------------------
+^^^^^^^^^^^^^
 1. Setting Up
-------------------
+^^^^^^^^^^^^^
 
 * Export your AWS key credentials into the local terminal that you intend to execute packer from. You can also add them to the variables file but this isn't recommeded. ::
 
     export AWS_ACCESS_KEY_ID=AKIAxxxxxxxxxxxxxxxxx
     export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxx
 
-* Clone the cinq repo: ::
+* Clone the Cloud Inquisitor (cinq) repo: ::
 
     git clone https://github.com/RiotGames/cloud-inquistor
 
@@ -77,9 +77,9 @@ itself.::
 
 * Save this file.
 
---------------------
+^^^^^^^^^^^^^^^^^^^^
 2. Building an Image
---------------------
+^^^^^^^^^^^^^^^^^^^^
 
 All the files required to build the image are in the packer subdirectory
 
@@ -112,9 +112,9 @@ with the -debug flag and step through the build process to identify where it is 
 
 
 
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 3. Launching your AMI
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 Cinq is designed to be able to operate on multiple AWS accounts. To ensure this is possible you'll need to create an Instance Profile
 so it can use AssumeRole in the target accounts it is auditing. Below is a sample of the instance profile you should create
@@ -153,7 +153,7 @@ so it can use AssumeRole in the target accounts it is auditing. Below is a sampl
 
 On the target account, create an IAM role called cinq-audit-role and attach the following policies: ::
 
-{
+    {
     "Statement": [
         {
             "Sid": "",
@@ -198,28 +198,28 @@ On the target account, create an IAM role called cinq-audit-role and attach the 
         }
     ],
     "Version": "2012-10-17"
-}
+    }
 
-Trust Policy:
+**Trust Policy**:
 
 Note: Ensure you have the correct source AWS Account ID (that is running CINQ) and the Instance Profile Name (not the Role name) populated here.
 
-{
-  "Version": "2012-10-17",
-  "Statement": [
     {
-      "Sid": "",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": [
-          "arn:aws:iam::<accountid-running-cinq>:role/<instanceprofilename>
-        ],
-        "Service": "ec2.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
+    "Version": "2012-10-17",
+    "Statement": [
+    {
+         "Sid": "",
+         "Effect": "Allow",
+         "Principal": {
+         "AWS": [
+             "arn:aws:iam::<accountid-running-cinq>:role/<instanceprofilename>
+             ],
+             "Service": "ec2.amazonaws.com"
+         },
+         "Action": "sts:AssumeRole"
+         }
+       ]
+      }
 
 
 You can now launch this AMI. When launching your AMI ensure the following:
@@ -228,6 +228,7 @@ You can now launch this AMI. When launching your AMI ensure the following:
 2. Security Groups should be open on ``22/443`` so that you can connect to ``Cloud Inquisitor``
 3. ssh into the instance and grab the admin credentials from ``$INSTALLDIR/cinq-backend/logs/apiserver.log``
 4. Connect to https://<yourinstanceip> and Login
+
 
 * You can then add new accounts under the **Accounts** tab
 
