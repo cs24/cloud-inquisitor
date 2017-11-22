@@ -7,7 +7,7 @@ if 'flask.app' in modules:
 
 from flask_script import Manager
 
-os.environ['AWS_AUDIT_SETTINGS'] = '../settings/testconfig.py'
+os.environ['CINQ_SETTINGS'] = '../settings/testconfig.py'
 from cloud_inquisitor import app, db, register_views
 from cloud_inquisitor.plugins.commands import setup
 
@@ -38,9 +38,9 @@ def create_db_and_user():
     # sudo mysql -u root -e "create database cloud_inquisitor; grant ALL on cloud_inquisitor.* to 'cloud_inquisitor'@'localhost' identified by 'changeme';" || true # noqa
     try:
         output = subprocess.check_output('sudo mysql -u root -e ' +
-                                         '"drop database if exists awsaudits_tests; ' +
-                                         'create database awsaudits_tests; ' +
-                                         'grant ALL on awsaudits_tests.* to \'awsaudits_tests\'@\'localhost\' ' +
+                                         '"drop database if exists cinq_tests; ' +
+                                         'create database cinq_tests; ' +
+                                         'grant ALL on cinq_tests.* to \'cinq_tests\'@\'localhost\' ' +
                                          'identified by \'changeme\';"',
                                          shell=True, stderr=subprocess.STDOUT)
         print(output)

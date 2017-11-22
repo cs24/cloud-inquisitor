@@ -150,6 +150,27 @@
         },
         {
             "type": "shell",
+<<<<<<< HEAD
+            "execute_command": "if [ \"{{ build_name }}\" == \"ami-with-tests\" ]; then chmod +x {{ .Path }}; {{ .Vars }} sudo -EH {{ .Path }}; else exit 0; fi",
+            "inline": [
+                "echo \"Database setup...\"",
+                "sudo mysql -u root -e \"create database cinq; grant ALL on cinq* to 'cinq'@'localhost' identified by 'changeme';\"",
+                "export INQUISITOR_SETTINGS=/opt/cinq-backend/settings/production.py",
+                "cd /opt/cinq-backend",
+                "sudo -u www-data -E python3 manage.py db upgrade",
+                "echo ''",
+                "echo \"Ignore line above about 'Failed loading configuration from database.' It was buffered before creating DB\"",
+                "sudo -u www-data -E python3 manage.py setup --headless"
+            ]
+        },
+        {
+            "type": "shell",
+            "execute_command": "if [ \"{{ build_name }}\" == \"ami-with-tests\" ]; then chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}; else exit 0; fi",
+            "inline": [
+                "sudo systemctl restart supervisor.service",
+                "cd /tmp/packer/cinq-frontend/tests",
+                "bash ./test-e2e.sh"
+=======
             "execute_command": "if [ \"{{ user `app_db_setup_local` }}\" == \"True\" ]; then chmod +x {{ .Path }}; {{ .Vars }} sudo -EH {{ .Path }}; else exit 0; fi",
             "script": "scripts/setup_db.sh",
             "environment_vars": [
@@ -157,6 +178,7 @@
                 "APP_DB_USER={{user `app_db_user`}}",
                 "APP_DB_PW={{user `app_db_pw`}}",
                 "APP_PYENV_PATH={{user `install_base`}}/{{user `pyenv_dir`}}"
+>>>>>>> 069a353110d746d5926e0c513b144b7f4e7e5401
             ]
         },
         {

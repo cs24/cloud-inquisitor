@@ -6,7 +6,7 @@ clean:
 	@echo "Destroying possible vagrant machine..."
 	@cd packer && vagrant destroy -f || true
 	rm -rf ./frontend/dist ./frontend/node_modules ./frontend/nohup.out ./frontend/rm.log
-	rm -rf ./backend/.eggs ./backend/awsaudits.egg-info ./backend/build ./backend/logs/* ./backend/nohup.out
+	rm -rf ./backend/.eggs ./backend/cinq.egg-info ./backend/build ./backend/logs/* ./backend/nohup.out
 
 dist-clean: clean
 	git clean -d -x -i
