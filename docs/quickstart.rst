@@ -230,5 +230,5 @@ You can now launch this AMI. When launching your AMI ensure the following:
     4. Connect to https://<yourinstanceip> and Login
 
 
-* You can then add new accounts under the **Accounts** tab
+You can then add new accounts under the **Accounts** tab
 
