@@ -17,7 +17,7 @@ install_requirements() {
     # Ensure curl is installed for the next step
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y curl
 
-    # Not using Ubuntu distro node 4.x package due to intermittent bug cases (aws-audits/issues/186)
+    # Not using Ubuntu distro node 4.x package due to intermittent bug cases
     curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 
     # We're mixing build with with runtime a bit here (git, npm). Consider separating build-deps (git npm)

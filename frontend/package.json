@@ -8,11 +8,12 @@
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [
-        "awsaudits",
+        "cinq",
+        "Cloud Inquisitor",
         "frontend"
     ],
-    "author": "Asbjorn Kjaer <akjaer@riotgames.com>",
-    "license": "MIT",
+    "author": "Riot Security <security@riotgames.com>",
+    "license": "Apache 2.0",
     "dependencies": {
         "angular": "1.6.5",
         "angular-animate": "1.6.5",

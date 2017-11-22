@@ -5,7 +5,7 @@ from cloud_inquisitor.utils import generate_jwt_token
 import unittest
 
 
-class AWSAuditsTestCase(unittest.TestCase):
+class CinqTestCase(unittest.TestCase):
     anon_client = None
     admin_client = None
     admin_jwt = None

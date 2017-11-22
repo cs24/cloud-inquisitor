@@ -1,9 +1,9 @@
-from .. import test_awsaudits  # MUST BE FIRST to load FLASK CONTEXT
+from .. import test_cinq  # MUST BE FIRST to load FLASK CONTEXT
 
 from cloud_inquisitor.constants import UNAUTH_MESSAGE, MSG_INVALID_USER_OR_PASSWORD
 
 
-class BuiltinTestCase(test_awsaudits.AWSAuditsTestCase):
+class BuiltinTestCase(test_cinq.CinqTestCase):
     def test_unauthorized(self):
         response = self.anon_client.get('/')
         assert response.status_code == 401

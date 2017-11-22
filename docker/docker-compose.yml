@@ -6,8 +6,8 @@ services:
       - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=mypassword
-      - MYSQL_DATABASE=awsaudits
-      - MYSQL_USER=${DB_USER:-inquisitor}
+      - MYSQL_DATABASE=cinq
+      - MYSQL_USER=${DB_USER:-cinq}
       - MYSQL_PASSWORD=${DB_PASS:-changeme}
     volumes:
       - "./database:/var/lib/mysql"
@@ -28,8 +28,8 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - AWS_AUDIT_SETTINGS=../settings/config.py
-      - DB_USER=${DB_USER:-inquisitor}
+      - CINQ_SETTINGS=../settings/config.py
+      - DB_USER=${DB_USER:-cinq}
       - DB_PASS=${DB_PASS:-changeme}
       - DB_URL=${DB_URL:-db}
       - DB_PORT=${DB_PORT:-3306}
@@ -41,8 +41,8 @@ services:
       context: ./../
       dockerfile: ./docker/scheduler-Dockerfile
     environment:
-      - AWS_AUDIT_SETTINGS=../settings/config.py
-      - DB_USER=${DB_USER:-inquisitor}
+      - CINQ_SETTINGS=../settings/config.py
+      - DB_USER=${DB_USER:-cinq}
       - DB_PASS=${DB_PASS:-changeme}
       - DB_URL=${DB_URL:-db}
       - DB_PORT=${DB_PORT:-3306}

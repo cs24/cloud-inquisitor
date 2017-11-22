@@ -9,7 +9,7 @@ set -o nounset
 # BACKEND
 cd ${APP_BACKEND_BASE_PATH}
 mkdir -p ./logs
-rm -rf ./awsaudits.egg-info ./.eggs
+rm -rf ./cinq.egg-info ./.eggs
 pip3 install --upgrade -r requirements.txt
 pip3 install --no-deps -e .
 
@@ -22,12 +22,12 @@ sed -e "s|APP_DEBUG|${APP_DEBUG}|" \
     -e "s|APP_AWS_API_ACCESS_KEY|${APP_AWS_API_ACCESS_KEY}|" \
     -e "s|APP_AWS_API_SECRET_KEY|${APP_AWS_API_SECRET_KEY}|" \
     /workspace/packer/files/backend-settings.py > ${APP_BACKEND_BASE_PATH}/settings/production.py
-export AWS_AUDIT_SETTINGS=${APP_BACKEND_BASE_PATH}/settings/production.py
+export CINQ_SETTINGS=${APP_BACKEND_BASE_PATH}/settings/production.py
 
 # A module used by manage.py expects private.key to be present, even if not needed
 openssl genrsa -out ${APP_BACKEND_BASE_PATH}/settings/ssl/private.key 2048
 
-sudo mysql -u root -e "create database awsaudits; grant ALL on awsaudits.* to 'awsaudits'@'localhost' identified by 'changeme';" || true
+sudo mysql -u root -e "create database cinq; grant ALL on cinq.* to 'cinq'@'localhost' identified by 'changeme';" || true
 sudo -u www-data -E python3 manage.py db upgrade
 
 sudo -u www-data -E python3 manage.py setup --headless
@@ -56,9 +56,9 @@ cat nohup.out
 echo "did gulp"
 
 # localhost cert
-CERTINFO="/C=US/ST=CA/O=Riot Games/localityName=Los Angeles/commonName=aws-audits/organizationalUnitName=Operations/emailAddress=someone@example.com"
-openssl req -x509 -subj "$CERTINFO" -days 3650 -newkey rsa:2048 -keyout audits-frontend.key -nodes -out audits-frontend.crt
-mv audits-frontend.key audits-frontend.crt ${APP_BACKEND_BASE_PATH}/settings/ssl/
+CERTINFO="/C=US/ST=CA/O=Riot Games/localityName=Los Angeles/commonName=cinq/organizationalUnitName=Operations/emailAddress=someone@example.com"
+openssl req -x509 -subj "$CERTINFO" -days 3650 -newkey rsa:2048 -keyout cinq-frontend.key -nodes -out cinq-frontend.crt
+mv cinq-frontend.key cinq-frontend.crt ${APP_BACKEND_BASE_PATH}/settings/ssl/
 
 # configure_supervisor omitted
 
@@ -66,13 +66,13 @@ mv audits-frontend.key audits-frontend.crt ${APP_BACKEND_BASE_PATH}/settings/ssl
 echo "nginx..."
 sed -e "s|APP_FRONTEND_BASE_PATH|${APP_FRONTEND_BASE_PATH}/dist|g" \
     -e "s|APP_BACKEND_BASE_PATH|${APP_BACKEND_BASE_PATH}|g" \
-        /workspace/packer/files/nginx-ssl.conf > /etc/nginx/sites-available/aws-audits.conf
-ln -sfn /etc/nginx/sites-available/aws-audits.conf /etc/nginx/sites-enabled/aws-audits.conf
+        /workspace/packer/files/nginx-ssl.conf > /etc/nginx/sites-available/cinq.conf
+ln -sfn /etc/nginx/sites-available/cinq.conf /etc/nginx/sites-enabled/cinq.conf
 rm -f /etc/nginx/sites-enabled/default
 service nginx restart
 
 echo ""
-echo "AWS-Audits should be running at https://localhost"
+echo "Cloud Inquisitor should be running at https://localhost"
 echo "Admin password is probably ${password_line}"
 echo "Watch gulp with: tail -f ../frontend/nohup.out"
 echo "Run task scheduler by logging in via ssh (e.g. vagrant ssh), and then: python3 manage.py run_scheduler"

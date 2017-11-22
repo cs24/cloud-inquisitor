@@ -14,7 +14,7 @@ echo 'Updating webdriver to get chrome plugin...'
 
 set +e
 echo 'Starting protractor tests...'
-# Parameters are optional: --params.auditsUrl=https://aws-audits.service.riotgames.com
+# Parameters are optional: --params.auditsUrl=https://yourhost.yourdomain.com
 ../node_modules/protractor/bin/protractor ./protractor.conf.js --params.auditsUrl=https://localhost
 test_code=$?
 set -e

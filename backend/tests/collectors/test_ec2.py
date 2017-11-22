@@ -1,5 +1,5 @@
-from .. import test_awsaudits  # MUST BE FIRST to load FLASK CONTEXT
+from .. import test_cinq  # MUST BE FIRST to load FLASK CONTEXT
 
 
-class BuiltinTestCase(test_awsaudits.AWSAuditsTestCase):
+class BuiltinTestCase(test_cinq.CinqTestCase):
     pass

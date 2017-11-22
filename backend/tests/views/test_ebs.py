@@ -1,12 +1,12 @@
 import os
-os.environ['AWS_AUDIT_SETTINGS'] = '../settings/testconfig.py'
-from .. import test_awsaudits  # MUST BE FIRST to load FLASK CONTEXT
+os.environ['CINQ_SETTINGS'] = '../settings/testconfig.py'
+from .. import test_cinq  # MUST BE FIRST to load FLASK CONTEXT
 
 from cloud_inquisitor import db
 from cloud_inquisitor.schema import Account, EBSVolume, Region
 
 
-class BuiltinTestCase(test_awsaudits.AWSAuditsTestCase):
+class BuiltinTestCase(test_cinq.CinqTestCase):
     def additional_test_setup(self):
         self.cleanup()
         self.add_test_volume_data()

@@ -90,8 +90,8 @@ install_certs() {
         CERTDATA=$(echo "$APP_SSL_CERT_DATA" | base64 -d)
         KEYDATA=$(echo "$APP_SSL_KEY_DATA" | base64 -d)
 
-        echo "$CERTDATA" > $APP_BACKEND_BASE_PATH/settings/ssl/audits-frontend.crt
-        echo "$KEYDATA" > $APP_BACKEND_BASE_PATH/settings/ssl/audits-frontend.key
+        echo "$CERTDATA" > $APP_BACKEND_BASE_PATH/settings/ssl/cinq-frontend.crt
+        echo "$KEYDATA" > $APP_BACKEND_BASE_PATH/settings/ssl/cinq-frontend.key
     fi
 }
 
@@ -103,8 +103,8 @@ function generate_jwt_key() {
 generate_self_signed_certs() {
     CERTINFO="/C=US/ST=CA/O=Riot Games/localityName=Los Angeles/commonName=localhost/organizationalUnitName=Operations/emailAddress=someone@example.com"
     openssl req -x509 -subj "$CERTINFO" -days 3650 -newkey rsa:2048 -nodes \
-        -keyout ${APP_BACKEND_BASE_PATH}/settings/ssl/audits-frontend.key \
-        -out ${APP_BACKEND_BASE_PATH}/settings/ssl/audits-frontend.crt
+        -keyout ${APP_BACKEND_BASE_PATH}/settings/ssl/cinq-frontend.key \
+        -out ${APP_BACKEND_BASE_PATH}/settings/ssl/cinq-frontend.crt
 }
 
 configure_nginx() {
@@ -118,11 +118,11 @@ configure_nginx() {
 
     sed -e "s|APP_FRONTEND_BASE_PATH|${APP_FRONTEND_BASE_PATH}|g" \
         -e "s|APP_BACKEND_BASE_PATH|${APP_BACKEND_BASE_PATH}|g" \
-        files/${NGINX_CFG} > /etc/nginx/sites-available/aws-audits.conf
+        files/${NGINX_CFG} > /etc/nginx/sites-available/cinq.conf
 
     rm -f /etc/nginx/sites-enabled/default;
-    ln -sf /etc/nginx/sites-available/aws-audits.conf /etc/nginx/sites-enabled/aws-audits.conf
-    # redirect output to assign in-function stdout/err to global [Asbjorn knows why]
+    ln -sf /etc/nginx/sites-available/cinq.conf /etc/nginx/sites-enabled/cinq.conf
+    # redirect output to assign in-function stdout/err to global
     service nginx restart 1>&1 2>&2
 }
 
@@ -130,7 +130,7 @@ configure_supervisor() {
     echo "Configuring supervisor"
     sed -e "s|APP_BACKEND_BASE_PATH|${APP_BACKEND_BASE_PATH}|g" \
         -e "s|APP_PYENV_PATH|${APP_PYENV_PATH}|g" \
-        files/supervisor.conf > /etc/supervisor/conf.d/aws-audits.conf
+        files/supervisor.conf > /etc/supervisor/conf.d/cinq.conf
 
     # If running on a systemd enabled system, ensure the service is enabled and running
     if [ ! -z "$(which systemctl)" ]; then
@@ -145,7 +145,7 @@ create_ec2_regions() {
     if [ ! -f $REG_FILE ]; then
         echo "[ ]" > $REG_FILE
     fi
-    #(cd ${APP_BACKEND_BASE_PATH} && AWS_AUDIT_SETTINGS=${APP_BACKEND_BASE_PATH}/settings/production.py python manage.py update_regions)
+    #(cd ${APP_BACKEND_BASE_PATH} && CINQ_SETTINGS=${APP_BACKEND_BASE_PATH}/settings/production.py python manage.py update_regions)
 }
 
 cd ${APP_TEMP_BASE}
@@ -159,4 +159,3 @@ generate_jwt_key
 configure_application
 configure_supervisor
 configure_nginx
-#create_ec2_regions

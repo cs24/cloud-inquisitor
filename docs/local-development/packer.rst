@@ -123,7 +123,7 @@ Connect to new instance and upgrade DB
     ssh -i <ssh key> ubuntu@<instance ip>
     sudo supervisorctl stop all
     cd /opt/cloudinquisitor-backend/
-    export AWS_AUDIT_SETTINGS=/opt/cinq-backend/settings/production.py
+    export CINQ_SETTINGS=/opt/cinq-backend/settings/production.py
     sudo -u www-data -E python3 manage.py db upgrade
     sudo -u www-data -E python3 manage.py setup --headless
     sudo supervisorctl start all
