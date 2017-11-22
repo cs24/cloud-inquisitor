@@ -46,7 +46,7 @@ Build Requirements
 
 * In the ``packer`` directory, copy ``variables/variables.json.example`` to your own ``variables`` file: ::
 
-    cd packer && cp variables/variables.json.example variables/mycinqenv.json
+    cd packer && cp variables/variables.json.sample variables/mycinqenv.json
 
 * Edit your json file and provide your parameters as follows
 
