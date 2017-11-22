@@ -9,6 +9,9 @@ use AWS STS tokens as well.
 
 .. _`AWS`: https://aws.amazon.com/
 
+It's highly recommended you first use the quickstart to build Cloud Inquisitor. However if you want to explore additional options please see `additional options <https://github.com/cloud-inquisitor/docs/additional_options.rst>`_.
+
+
 ===========================
 Installing Cloud Inquisitor
 ===========================
@@ -56,22 +59,22 @@ NOTE : Many of the variables are specific to the Packer BUILD environment and no
 itself.::
 
     {
-        ** "ec2_vpc_id":                   "vpc-e9cf218f",       (This is the VPC for the packer BUILD instance) **
-        ** "ec2_subnet_id":                "subnet-ed53be8b",    (This is the subnet for the packer BUILD instance) **
-        ** "ec2_source_ami":               "ami-0a00ce72",       (This is an Ubuntu 16 AMI but you can use your own custom AMI ID) **
+        "ec2_vpc_id":                   "vpc-e9cf218f",       (This is the VPC for the packer BUILD instance)
+        "ec2_subnet_id":                "subnet-ed53be8b",    (This is the subnet for the packer BUILD instance)
+        "ec2_source_ami":               "ami-0a00ce72",       (This is an Ubuntu 16 AMI but you can use your own custom AMI ID)
         "ec2_instance_type":            "m4.large",
         "ec2_region":                   "us-west-2",
         "ec2_ssh_username":             "ubuntu",
-        ** "ec2_security_groups":          "sg-b5699dc8",        (Ensure that you have SSH open from your workstation or packer build will fail) **
+        "ec2_security_groups":          "sg-b5699dc8",        (Ensure that you have SSH open from your workstation or packer build will fail)
         "ec2_public_ip_enable":         "False",              (If you don't have VPN or DirectConnect to your VPC, set this to True)
         "app_kms_account_name":         "my_account_name",    (Optional: for using KMS encrypted userdata for your DB URI)
         "app_use_user_data":            "False",              (Set to True if you want to use KMS encrypted userdata for your DB URI)
         "app_apt_upgrade":              "True",
         "app_log_level":                "INFO",
-        ** "app_db_uri":                   "mysql://cinq:changeme@localhost:3306/cinq",  (This points to your database (See Notes)) **
-        ** "app_db_user":                  "cinq", **
-        ** "app_db_pw":                    "changeme", **
-        ** "app_db_setup_local":           "True",               (Easiest way to get cinq running, set to False if you want to use external DB) **
+        "app_db_uri":                   "mysql://cinq:changeme@localhost:3306/cinq",  (This points to your database (See Notes))
+        "app_db_user":                  "cinq",
+        "app_db_pw":                    "changeme",
+        "app_db_setup_local":           "True",               (Easiest way to get cinq running, set to False if you want to use external DB)
         "git_branch":                   "master"
     }
 
@@ -202,7 +205,7 @@ On the target account, create an IAM role called cinq-audit-role and attach the 
 
 **Trust Policy**:
 
-Note: Ensure you have the correct source AWS Account ID (that is running CINQ) and the Instance Profile Name (not the Role name) populated here.
+Note: Ensure you have the correct source AWS Account ID (that is running CINQ) and the Instance Profile Name (not the Role name) populated here. ::
 
     {
     "Version": "2012-10-17",
