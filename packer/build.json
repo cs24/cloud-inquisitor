@@ -21,7 +21,7 @@
         "app_apt_upgrade":                          "True",
         "app_debug":                                "False",
         "app_db_uri":                               "UNUSED",
-        "app_db_setup_local":                       null,
+        "app_db_setup_local":                       "True",
         "app_db_user":                              null,
         "app_db_pw":                                null,
         "app_ssl_enabled":                          "True",

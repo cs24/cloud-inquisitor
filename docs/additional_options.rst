@@ -12,9 +12,9 @@ the install and setup of the local DB and point to the database you'd like to us
 
 Once the AMI is created and you've logged in you'll need to initialize the database. In order to do so execute the following commands ::
 
-# source /opt/pyenv/bin/activate
+# source /path/to/pyenv/bin/activate
 # export INQUISITOR_SETTINGS=/path/to/cinq-backend/settings/production.py
-# cd /path/to-cinq-backend
+# cd /path/to/cinq-backend
 # python3 manage.py db upgrade
 # python3 manage.py setup --headless
 
@@ -22,7 +22,7 @@ You may receive some warnings but these commands should succeed. Then if you res
 
 # supervisorctl restart all
 
-You can look in /path/to/cinq-backend/logs/ to see if you have any configuration errors
+You can look in /path/to/cinq-backend/logs/ to see if you have any configuration errors.
 
 
 ----------------
@@ -41,14 +41,17 @@ $ aws kms encrypt --key-id arn:aws:kms:us-west-2:<account_id>:key/4b3e46a4-74f8-
 
 It will return a response with a field of CipherTextBlob that you can paste into your UserData field when you launch the AMI.
 
-To verify your cinq instance is using KMS, your production settings should contain:
+To verify your cinq instance is using KMS, your production settings should contain :
 
 * /path/to/cinq-backend/settings/production.py ::
 
-# Gather DB settings from a KMS encrypted user-data string. See documentation for more information
-USE_USER_DATA = True
-KMS_ACCOUNT_NAME = '<account_name>'
-USER_DATA_URL = 'http://169.254.169.254/latest/user-data'
+
+ USE_USER_DATA = True
+ USE_USER_DATA = True
+ KMS_ACCOUNT_NAME = '<account_name>'
+ USER_DATA_URL = 'http://169.254.169.254/latest/user-data'
+#
+
 
 ----------------------
 Authentication Systems
@@ -68,13 +71,13 @@ cloud_inquisitor.plugins.commands.auth Enabled OneLoginSAML
 
 Verify that your configuration is correct and the active system ::
 
-python3 manage.py auth -l
+ # python3 manage.py auth -l
 
-cloud_inquisitor.plugins.commands.auth --- List of available auth systems ---
-cloud_inquisitor.plugins.commands.auth Local Authentication
-cloud_inquisitor.plugins.commands.auth OneLoginSAML (active)
-cloud_inquisitor.plugins.commands.auth --- End list of Auth Systems ---
-
+ cloud_inquisitor.plugins.commands.auth --- List of available auth systems ---
+ cloud_inquisitor.plugins.commands.auth Local Authentication
+ cloud_inquisitor.plugins.commands.auth OneLoginSAML (active)
+ cloud_inquisitor.plugins.commands.auth --- End list of Auth Systems ---
+#
 
 To switch back to local Auth simply execute ::
 
