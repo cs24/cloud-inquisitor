@@ -9,6 +9,8 @@ services:
       - MYSQL_DATABASE=cinq
       - MYSQL_USER=${DB_USER:-cinq}
       - MYSQL_PASSWORD=${DB_PASS:-changeme}
+    volumes:
+      - "./database:/var/lib/mysql"
 
   frontend:
     build:
