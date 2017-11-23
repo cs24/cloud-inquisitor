@@ -58,11 +58,11 @@ auditing and modify accordingly. For example:
 * to add a new account, select the dialog button in the very bottom right hand side of the screen and 
 select the **+** as shown below:
 
-.. image:: images/images/cinq_account_add.png
+.. image:: images/cinq_account_add.png
 
 and then you can create your new account on the following screen:
 
-.. image:: images/images/cinq_account_create.png
+.. image:: images/cinq_account_create.png
 
 The ``Config`` section is quite detailed and this is where you can perform extensive configuration on:
 
