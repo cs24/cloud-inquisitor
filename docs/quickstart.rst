@@ -9,7 +9,7 @@ use AWS STS tokens as well.
 
 .. _`AWS`: https://aws.amazon.com/
 
-It's highly recommended you first use the quickstart to build Cloud Inquisitor. However if you want to explore additional options please see `additional options <https://github.com/cloud-inquisitor/docs/additional_options.rst>`_.
+It's highly recommended you first use the quickstart to build Cloud Inquisitor. However if you want to explore additional options please see `additional options <./additional_options.rst>`_.
 
 
 ===========================
@@ -39,6 +39,11 @@ Build Requirements
     export AWS_ACCESS_KEY_ID=AKIAxxxxxxxxxxxxxxxxx
     export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxx
 
+Windows ::
+
+    set AWS_ACCESS_KEY_ID=AKIAxxxxxxxxxxxxxxx
+    set AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxx
+
 * Clone the Cloud Inquisitor (cinq) repo: ::
 
     git clone https://github.com/RiotGames/cloud-inquistor
@@ -57,13 +62,13 @@ NOTE : You will need to change some of these items as they are environnment-spec
 * The easiest way to get cinq up and running is to ensure app_db_setup_local is set to True. The will install a local mysql-server on the instance itself.::
 
     {
-        "ec2_vpc_id":                   "vpc-e9cf218f",       (This is the VPC for the packer BUILD instance)
-        "ec2_subnet_id":                "subnet-ed53be8b",    (This is the subnet for the packer BUILD instance)
+        "ec2_vpc_id":                   "vpc-xxxxxxxx",       (This is the VPC for the packer BUILD instance)
+        "ec2_subnet_id":                "subnet-xxxxxxxx",    (This is the subnet for the packer BUILD instance)
         "ec2_source_ami":               "ami-0a00ce72",       (This is an Ubuntu 16 AMI but you can use your own custom AMI ID)
         "ec2_instance_type":            "m4.large",
         "ec2_region":                   "us-west-2",
         "ec2_ssh_username":             "ubuntu",
-        "ec2_security_groups":          "sg-b5699dc8",        (Ensure that you have SSH open from your workstation or packer build will fail)
+        "ec2_security_groups":          "sg-xxxxxxxx",        (Ensure that you have SSH open from your workstation or packer build will fail)
         "ec2_public_ip_enable":         "False",              (If you don't have VPN or DirectConnect to your VPC, set this to True)
         "app_kms_account_name":         "my_account_name",    (Optional: for using KMS encrypted userdata for your DB URI)
         "app_use_user_data":            "False",              (Set to True if you want to use KMS encrypted userdata for your DB URI)
@@ -93,10 +98,10 @@ Assuming your variables are correct and you have the proper AWS permissions, pac
 
     ==> ami: Waiting for the instance to stop...
     ==> ami: Creating the AMI: cloud-inquisitor @master 2017-11-22 18-22-37
-    **    ami: AMI: ami-a57ba6dd **
+    **    ami: AMI: ami-xxxxxxxx **
     ==> ami: Waiting for AMI to become ready...
-    ==> ami: Adding tags to AMI (ami-a57ba6dd)...
-    ==> ami: Tagging snapshot: snap-0155cc17def79c4c4
+    ==> ami: Adding tags to AMI (ami-xxxxxxxx)...
+    ==> ami: Tagging snapshot: snap-xxxxxxxxxx
     ==> ami: Creating AMI tags
         ami: Adding tag: "Accounting": "yourteam.accounting.tag"
         ami: Adding tag: "Name": "Cloud Inquisitor System Image"
@@ -150,9 +155,9 @@ Cloud Inquisitor is designed to run from a security/audit AWS account and to be 
 
 * Create an `IAM Role <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html>`_ (within the AWS Console) and bind the above policy (that you have just created) to it
 
-* (Optional) If you intend to audit resources that are NOT in the account you are running Cloud Inquisitor from, you will need to setup a trust role for EACH target account:
+* (Optional) For each account cinq is auditing you will need to setup a trust role for EACH target account (including the one you are running cinq from):
 
-On the target account, create an IAM role called ``cinq-audit-role`` and attach the following policies: ::
+On the target account, create an IAM role called ``cinq_role`` and attach the following policies: ::
 
     {
         "Statement": [
