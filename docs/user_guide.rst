@@ -54,7 +54,7 @@ On the left-hand side, there are a bunch of admin options such as :
 
 In the ``Accounts`` section, you can review the current accounts that ``Cloud Inquisitor`` is 
 auditing and modify accordingly. For example, to add a new account, select the dialog button 
-in the very bottom right hand side of the screen and select the **+** as shown below:
+in the very bottom right hand side of the screen and select the "+" as shown below:
 
 .. image:: images/cinq_account_add.png
 
