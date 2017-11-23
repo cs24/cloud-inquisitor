@@ -41,16 +41,15 @@ $ aws kms encrypt --key-id arn:aws:kms:us-west-2:<account_id>:key/4b3e46a4-74f8-
 
 It will return a response with a field of CipherTextBlob that you can paste into your UserData field when you launch the AMI.
 
-To verify your cinq instance is using KMS, your production settings should contain :
+To verify your cinq instance is using KMS, your production settings should contain
 
 * /path/to/cinq-backend/settings/production.py ::
-
 
  USE_USER_DATA = True
  USE_USER_DATA = True
  KMS_ACCOUNT_NAME = '<account_name>'
  USER_DATA_URL = 'http://169.254.169.254/latest/user-data'
-#
+
 
 
 ----------------------
@@ -62,12 +61,12 @@ It's possible that other IdPs can be used but this has not been tested.
 
 * Edit your /path/to/cinq-backend/settings/settings.json file and provide the required values ::
 
-# source /path/to/pyvenv/bin/activate
-# cd /path/to/cinq-backend
-# python3 manage.py auth -a OneLoginSAML
+ #source /path/to/pyvenv/bin/activate
+ #cd /path/to/cinq-backend
+ #python3 manage.py auth -a OneLoginSAML
 
-cloud_inquisitor.plugins.commands.auth Disabled Local Authentication
-cloud_inquisitor.plugins.commands.auth Enabled OneLoginSAML
+ cloud_inquisitor.plugins.commands.auth Disabled Local Authentication
+ cloud_inquisitor.plugins.commands.auth Enabled OneLoginSAML
 
 Verify that your configuration is correct and the active system ::
 
@@ -77,7 +76,7 @@ Verify that your configuration is correct and the active system ::
  cloud_inquisitor.plugins.commands.auth Local Authentication
  cloud_inquisitor.plugins.commands.auth OneLoginSAML (active)
  cloud_inquisitor.plugins.commands.auth --- End list of Auth Systems ---
-#
+
 
 To switch back to local Auth simply execute ::
 
@@ -149,7 +148,7 @@ Backend Settings
 * ``app_kms_account_name`` - Provides an account name for kms.
 * ``app_user_data_url`` - URL where user data is access. Default: ``http://169.254.169.254/latest/user-data``
 
-===
+---
 FYI
-===
+---
 The vast majority of these settings should be left at their default values unless you fell you must change them to get cinq running.
