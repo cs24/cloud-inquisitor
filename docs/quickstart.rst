@@ -34,7 +34,9 @@ Build Requirements
 1. Setting Up
 ^^^^^^^^^^^^^
 
-* Export your AWS key credentials into the local terminal that you intend to execute packer from. You can also add them to the variables file but this isn't recommeded. ::
+* Export your AWS key credentials into the local terminal that you intend to execute packer from. You can also add them to the variables file but this isn't recommeded.
+
+Unix-based Systems ::
 
     export AWS_ACCESS_KEY_ID=AKIAxxxxxxxxxxxxxxxxx
     export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxx
