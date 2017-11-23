@@ -41,9 +41,7 @@ $ aws kms encrypt --key-id arn:aws:kms:us-west-2:<account_id>:key/4b3e46a4-74f8-
 
 It will return a response with a field of CipherTextBlob that you can paste into your UserData field when you launch the AMI.
 
-To verify your cinq instance is using KMS, your production settings should contain
-
-* /path/to/cinq-backend/settings/production.py ::
+To verify your cinq instance is using KMS, your production settings in /path/to/cinq-backend/settings/production.py should contain :: 
 
  USE_USER_DATA = True
  USE_USER_DATA = True
@@ -59,14 +57,13 @@ Authentication Systems
 Cinq supports built-in authentication system (default), as well as federation authentication with OneLogin IdP via SAML.
 It's possible that other IdPs can be used but this has not been tested.
 
-* Edit your /path/to/cinq-backend/settings/settings.json file and provide the required values ::
+Edit your /path/to/cinq-backend/settings/settings.json file and provide the required values ::
 
- #source /path/to/pyvenv/bin/activate
- #cd /path/to/cinq-backend
- #python3 manage.py auth -a OneLoginSAML
-
- cloud_inquisitor.plugins.commands.auth Disabled Local Authentication
- cloud_inquisitor.plugins.commands.auth Enabled OneLoginSAML
+ # source /path/to/pyvenv/bin/activate
+ # cd /path/to/cinq-backend
+ # python3 manage.py auth -a OneLoginSAML
+   cloud_inquisitor.plugins.commands.auth Disabled Local Authentication
+   cloud_inquisitor.plugins.commands.auth Enabled OneLoginSAML
 
 Verify that your configuration is correct and the active system ::
 
