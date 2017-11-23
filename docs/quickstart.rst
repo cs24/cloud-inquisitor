@@ -148,7 +148,7 @@ Cloud Inquisitor is designed to run from a security/audit AWS account and to be 
         ]
     }
 
-* * Create an `IAM Role <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html>`_ (within the AWS Console) and bind the above policy (that you have just created) to it
+* Create an `IAM Role <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html>`_ (within the AWS Console) and bind the above policy (that you have just created) to it
 
 * (Optional) If you intend to audit resources that are NOT in the account you are running Cloud Inquisitor from, you will need to setup a trust role for EACH target account:
 
