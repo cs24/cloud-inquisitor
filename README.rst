@@ -51,8 +51,8 @@ Resources
 This project has a **docs** directory that contains many resources that will help you implement Cloud Inquisitor and contribute to the project.
 
 * `Quickstart <docs/quickstart.rst>`_
-* `Upgrading <docs/upgrade.rst>`_
 * `Development Build <docs/local-development/README.rst>`_
+* `User Guide <docs/user_guide.rst>`_
 * `Changelog <docs/changelog.rst>`_
 * `Source Code <https://www.github.com/riotgames/cloud-inquisitor>`_
 * `Contribution Guidelines <docs/contributing.rst>`_

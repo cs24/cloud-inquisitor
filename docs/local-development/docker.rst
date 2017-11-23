@@ -29,7 +29,8 @@ Requirements
 
 * MySql server (provided in ``docker-compose``).
 * User in AWS has trust permission for Cloud Inquisitor ``InstanceProfile``.
-* AWS API keys updated in ``/path/to/cloud-inquisitor/docker/dev-backend-settings.py``.
+* Copy ``/path/to/cloud-inquisitor/docker/dev-backend-config.py.sample`` to ``/path/to/cloud-inquisitor/docker/dev-backend-config.py``
+* AWS API keys and AWS Instance Role ARN updated in ``/path/to/cloud-inquisitor/docker/dev-backend-config.py``.
 
 =============
 Initial Setup
@@ -46,7 +47,7 @@ Initial Setup
 
     docker-compose up -d db
 
-3. Setup database for Cloud Inquisitor and start the API server:
+3. Setup database for Cloud Inquisitor and start the API server (The db server takes a few moments to start the first time you turn it on.  This command will fail if the db is not ready):
 
 ::
 

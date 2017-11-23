@@ -47,7 +47,7 @@ To verify your cinq instance is using KMS, your production settings in /path/to/
  USE_USER_DATA = True
  KMS_ACCOUNT_NAME = '<account_name>'
  USER_DATA_URL = 'http://169.254.169.254/latest/user-data'
-#
+
 
 
 ----------------------
@@ -62,9 +62,8 @@ Edit your /path/to/cinq-backend/settings/settings.json file and provide the requ
  # source /path/to/pyvenv/bin/activate
  # cd /path/to/cinq-backend
  # python3 manage.py auth -a OneLoginSAML
-
-cloud_inquisitor.plugins.commands.auth Disabled Local Authentication
-cloud_inquisitor.plugins.commands.auth Enabled OneLoginSAML
+   cloud_inquisitor.plugins.commands.auth Disabled Local Authentication
+   cloud_inquisitor.plugins.commands.auth Enabled OneLoginSAML
 
 Verify that your configuration is correct and the active system ::
 
@@ -74,7 +73,7 @@ Verify that your configuration is correct and the active system ::
  cloud_inquisitor.plugins.commands.auth Local Authentication
  cloud_inquisitor.plugins.commands.auth OneLoginSAML (active)
  cloud_inquisitor.plugins.commands.auth --- End list of Auth Systems ---
-#
+
 
 To switch back to local Auth simply execute ::
 
@@ -146,7 +145,7 @@ Backend Settings
 * ``app_kms_account_name`` - Provides an account name for kms.
 * ``app_user_data_url`` - URL where user data is access. Default: ``http://169.254.169.254/latest/user-data``
 
-===
+---
 FYI
-===
+---
 The vast majority of these settings should be left at their default values unless you fell you must change them to get cinq running.
