@@ -124,13 +124,13 @@ Example Workflow with Docker
 
 The following assumes you've already completed the `Initial Setup`_.
 
-* Pull the latest code down
-* Create your branch
-* Make your changes to the code
-* Run::
+1. Pull the latest code down
+2. Create your branch
+3. Make your changes to the code
+4. Run::
 
     docker-compose down
     docker-compose build
     docker-compose up -d
 
-* Repeat steps 3-7 as needed
+5. Repeat steps 3 and 4 as needed
