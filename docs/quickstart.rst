@@ -125,7 +125,7 @@ Assuming your variables are correct and you have the proper AWS permissions, pac
 
 Cloud Inquisitor is designed to run from a security/audit AWS account and to be able to operate on multiple AWS accounts, using `STS AssumeRole <https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html>`_. To ensure this is possible, you will need to create an ``Instance Profile`` so it can use ``AssumeRole`` in the target accounts it is auditing. Below is a sample of the instance profile you should create:
 
-* Create an IAM policy (within the AWS Console) as follows ::
+* Create an IAM policy `<https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html>`_ (within the AWS Console) as follows ::
 
     {
         "Version": "2012-10-17",
@@ -154,6 +154,10 @@ Cloud Inquisitor is designed to run from a security/audit AWS account and to be 
             }
         ]
     }
+
+Sample screenshot of what you should see when creating the policy:
+
+.. image:: images/cinq_iam_policy_create.png
 
 * Create an `IAM Role <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html>`_ (within the AWS Console) and bind the above policy (that you have just created) to it
 
@@ -207,6 +211,12 @@ On the target account, create an IAM role called ``cinq_role`` and attach the fo
           ],
         "Version": "2012-10-17"
     }
+
+Sample screenshot of what you should see when creating the role (be sure to select ``EC2`` for the type):
+
+.. image:: images/cinq_iam_role_create.png
+
+
 
 **Trust Policy**:
 

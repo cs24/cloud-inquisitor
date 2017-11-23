@@ -42,7 +42,7 @@ as shown below (second screenshot)
 Admin
 =========
 
-On the left-hand side bar, there are a bunch of admin options such as :
+On the left-hand side, there are a bunch of admin options such as :
 
 * Accounts
 * Config
@@ -51,6 +51,18 @@ On the left-hand side bar, there are a bunch of admin options such as :
 * Emails
 * Audit Log
 * Logs
+
+In the ``Accounts`` section, you can review the current accounts that ``Cloud Inquisitor`` is 
+auditing and modify accordingly. For example:
+
+* to add a new account, select the dialog button in the very bottom right hand side of the screen and 
+select the **+** as shown below:
+
+.. image:: images/images/cinq_account_add.png
+
+and then you can create your new account on the following screen:
+
+.. image:: images/images/cinq_account_create.png
 
 The ``Config`` section is quite detailed and this is where you can perform extensive configuration on:
 
