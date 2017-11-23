@@ -229,4 +229,4 @@ You can now launch this ``AMI`` within the ``EC2`` (Launch Instance) section of 
     4. Connect to https://<yourinstanceip> and login
 
 
-You can now add new accounts under the **Accounts** tab in the ``Cloud Inquisitor`` UI. Please check out the `user guide <docs/user_guide.rst>`_ for further details on how to use the UI, review results and update configuration.
+You can now add new accounts under the **Accounts** tab in the ``Cloud Inquisitor`` UI. Please check out the `user guide <user_guide.rst>`_ for further details on how to use the UI, review results and update configuration.
