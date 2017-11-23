@@ -67,11 +67,11 @@ class AccountList(BaseView):
             if type(value) == str:
                 value = value.strip()
 
-            if type(value) in (tuple, list, str):
+            if type(value) in (int, tuple, list, str):
                 if not value:
                     raise Exception('{} cannot be empty'.format(key.replace('_', ' ').title()))
             else:
-                raise ValueError('Invalid type: {}'.format(type(value)))
+                raise ValueError('Invalid type: {} for value {} for argument {}'.format(type(value), value, key))
 
         if Account.query.filter_by(account_name=args['accountName']).count() > 0:
             raise Exception('Account already exists')
