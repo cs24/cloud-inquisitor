@@ -47,7 +47,7 @@ Initial Setup
 
     docker-compose up -d db
 
-3. Setup database for Cloud Inquisitor and start the API server:
+3. Setup database for Cloud Inquisitor and start the API server (The db server takes a few moments to start the first time you turn it on.  This command will fail if the db is not ready):
 
 ::
 
