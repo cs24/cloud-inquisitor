@@ -44,7 +44,7 @@ Build Requirements
     git clone https://github.com/RiotGames/cloud-inquistor
 
 
-* In the ``packer`` directory, copy ``variables/variables.json.example`` to your own ``variables`` file: ::
+* In the ``packer`` directory, copy ``variables/variables.json.sample`` to your own ``variables`` file: ::
 
     cd packer && cp variables/variables.json.sample variables/mycinqenv.json
 
