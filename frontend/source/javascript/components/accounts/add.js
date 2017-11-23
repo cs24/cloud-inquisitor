@@ -41,7 +41,8 @@ function AccountAddController(Utils) {
         if (vm.account.contacts.length === 0) {
             Utils.toast('Contacts cannot be empty', 'error');
         } else {
-            vm.onAccountCreate(vm.account, onAddSuccess, onAddFailure);
+	    const accountInfo = Object.assign({}, vm.account, {enabled: vm.account.enabled ? 1 : 0});
+            vm.onAccountCreate(accountInfo, onAddSuccess, onAddFailure);
         }
     }
     //endregion
