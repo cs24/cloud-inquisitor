@@ -116,10 +116,9 @@ Assuming your variables are correct and you have the proper AWS permissions, pac
 3. Launching your AMI
 ^^^^^^^^^^^^^^^^^^^^^
 
-Cinq is designed to be able to operate on multiple AWS accounts. To ensure this is possible you'll need to create an Instance Profile
-so it can use AssumeRole in the target accounts it is auditing. Below is a sample of the instance profile you should create
+Cloud Inquisitor is designed to run from a security/audit AWS account and to be able to operate on multiple AWS accounts, using `STS AssumeRole <https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html>`_. To ensure this is possible, you will need to create an ``Instance Profile`` so it can use ``AssumeRole`` in the target accounts it is auditing. Below is a sample of the instance profile you should create:
 
-* Create an IAM Role and bind the following policy to it::
+* Create an `IAM Role <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html>`_ and bind the following policy to it::
 
     {
         "Version": "2012-10-17",
@@ -149,9 +148,9 @@ so it can use AssumeRole in the target accounts it is auditing. Below is a sampl
         ]
     }
 
-* (Optional) If you intend to audit resources that are NOT in the account you are running cinq from, you need to setup a trust role for EACH target account:
+* (Optional) If you intend to audit resources that are NOT in the account you are running Cloud Inquisitor from, you will need to setup a trust role for EACH target account:
 
-On the target account, create an IAM role called cinq-audit-role and attach the following policies: ::
+On the target account, create an IAM role called ``cinq-audit-role`` and attach the following policies: ::
 
     {
         "Statement": [
