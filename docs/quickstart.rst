@@ -221,13 +221,12 @@ Note: Ensure you have the correct source AWS Account ID (that is running CINQ) a
       }
 
 
-You can now launch this AMI. When launching your AMI ensure the following:
+You can now launch this ``AMI`` within the ``EC2`` (Launch Instance) section of your AWS Console. When launching your ``AMI`` ensure the following:
 
     1. Ensure you use the Instance Profile to launch your cinq instance
-    2. Security Groups should be open on ``22/443`` so that you can connect to ``Cloud Inquisitor``
-    3. ssh into the instance and grab the admin credentials from ``$INSTALLDIR/cinq-backend/logs/apiserver.log``
-    4. Connect to https://<yourinstanceip> and Login
+    2. Configure your Security Groups should be open on ``22/443`` so that you can connect to ``Cloud Inquisitor``
+    3. ssh into the instance and grab the admin credentials from ``/var/log/supervisor/cinq-api-stdout---supervisor-*****.log``
+    4. Connect to https://<yourinstanceip> and login
 
 
-You can then add new accounts under the **Accounts** tab in the ``Cloud Inquisitor`` UI.
-
+You can now add new accounts under the **Accounts** tab in the ``Cloud Inquisitor`` UI. Please check out the `user guide <docs/user_guide.rst>`_ for further details on how to use the UI, review results and update configuration.
